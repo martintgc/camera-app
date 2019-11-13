@@ -51,10 +51,9 @@ setTimeout(processVideo, 0);
   
 */
 function greatblock() {
-   var height=cameraView.videoHeight;
-var width=cameraView.videoWidth;
-let src = new cv.Mat(height, width, cv.CV_8UC4);
-let dst = new cv.Mat(height, width, cv.CV_8UC1);
+
+let src = new cv.Mat(cameraView.height, cameraView.width, cv.CV_8UC4);
+let dst = new cv.Mat(cameraView.height,cameraView.width, cv.CV_8UC1);
 let cap = new cv.VideoCapture(cameraView);
 const FPS = 30;
  
