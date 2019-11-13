@@ -82,7 +82,7 @@ function checkFrame() {
 	cv.adaptiveThreshold(dst, dst, 255, cv.ADAPTIVE_THRESH_GAUSSIAN_C, cv.THRESH_BINARY, 115, 4);	
     cv.medianBlur(dst, dst, 11)		
 
-    cv.copyMakeBorder(dst, dst, 5, 5, 5, 5, cv.BORDER_CONSTANT, value=[0, 0, 0])		
+    cv.copyMakeBorder(dst, dst, 5, 5, 5, 5, cv.BORDER_CONSTANT, value=[0, 0, 0, 0])		
     edges = cv.Canny(dst, 200, 250)
 
     cv.Canny(src, dst, 50, 100, 3, false);
