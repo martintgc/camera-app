@@ -70,7 +70,8 @@ function checkFrame() {
     edge.style.opacity=0.5;
     let src = new cv.Mat(cameraView.videoHeight, cameraView.videoWidth, cv.CV_8UC4);
     let dst = new cv.Mat(cameraView.videoHeight, cameraView.videoWidth, cv.CV_8UC1);
-	let tmp = new cv.Mat(cameraView.videoHeight, cameraView.videoWidth, cv.CV_8UC1);
+	//let tmp = new cv.Mat(cameraView.videoHeight, cameraView.videoWidth, cv.CV_8UC1);
+	
     cameraSensor.width = cameraView.videoWidth;
     cameraSensor.height = cameraView.videoHeight;
     cameraSensor.getContext("2d").drawImage(cameraView, 0, 0)
@@ -86,11 +87,17 @@ function checkFrame() {
     cv.copyMakeBorder(dst, dst, 5, 5, 5, 5, cv.BORDER_CONSTANT, value=[0, 0, 0, 0])		
     cv.Canny(dst,dst, 200, 250, 3, false);
 	
-	
+	let tmp = cv.Mat.zeros(dst.cols, dst.rows, cv.CV_8UC3);
 	let contours = new cv.MatVector();
 	let hierarchy = new cv.Mat();
 	let poly = new cv.MatVector();
 	cv.findContours(dst, contours, hierarchy, cv.RETR_CCOMP, cv.CHAIN_APPROX_SIMPLE);
+	for (let i = 0; i < contours.size(); ++i) {
+    		let color = new cv.Scalar(Math.round(Math.random() * 255), Math.round(Math.random() * 255),
+                              Math.round(Math.random() * 255));
+    		cv.drawContours(tmp, contours, i, color, 1, cv.LINE_8, hierarchy, 100);
+	}
+	/*
 	for (let i = 0; i < contours.size(); ++i) {
 		let tmp = new cv.Mat();
     		let cnt = contours.get(i);
@@ -101,7 +108,7 @@ function checkFrame() {
 		
 		
 	}
-	
+	*/
 	
 	
 	//cv.drawContours(tmp, contours, -1, new cv.Scalar(255,255,255), 1, cv.LINE_AA, hierarchy, 0);
