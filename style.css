@@ -45,8 +45,10 @@ html, body{
 }
 
 #ui--edge {
-  object-fit: cover;
+
   position: fixed;
+   height: 100%;
+    width: 100%;
   object-fit: cover;
   z-index: 4;
 }
