@@ -88,10 +88,32 @@ function checkFrame() {
 	
 	let contours = new cv.MatVector();
 	let hierarchy = new cv.Mat();
+	let poly = new cv.MatVector();
 	cv.findContours(dst, contours, hierarchy, cv.RETR_CCOMP, cv.CHAIN_APPROX_SIMPLE);
 	for (let i = 0; i < contours.size(); ++i) {
-		perimeter=cv.arcLength(contours.get(i), true);
+		let tmp = new cv.Mat();
+    		let cnt = contours.get(i);
+		
+		perimeter=cv.arcLength(cnt, true);
+		approx=cv.approxPolyDP(cnt, tmp, 3, true);
+		poly.push_back(tmp);
+		/*
+		if (len(approx) == 4 and cv2.isContourConvex(approx) and maxAreaFound < cv2.contourArea(approx) < MAX_COUNTOUR_AREA)
+		{
+        		maxAreaFound = cv2.contourArea(approx)		   
+			pageContour = approx
+			
+		}
+		*/
+		//approx = cv.approxPolyDP(cnt, 0.03 * perimeter, True)
 	}
+	
+	
+	for (let i = 0; i < poly.size(); ++i) {
+		cv.drawContours(dst, poly, i, new cv.Scalar(255,255,255), 1, 8, hierarchy, 0);
+	}
+	
+	
 	/*
 	// You can try more different parameters
 	height = edges.shape[0];
