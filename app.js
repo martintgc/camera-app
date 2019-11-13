@@ -85,7 +85,7 @@ function checkFrame() {
 
     cv.copyMakeBorder(dst, dst, 5, 5, 5, 5, cv.BORDER_CONSTANT, value=[0, 0, 0, 0])		
     edges = cv.Canny(dst,dst, 200, 250, 3, false);
-	//cv.findContours(edges, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
+	
 	
 	let contours = new cv.MatVector();
 	let hierarchy = new cv.Mat();
@@ -101,7 +101,7 @@ function checkFrame() {
 		
 		if (cv.isContourConvex(tmp)) {
 		    poly.push_back(tmp);
-		    }
+		}
 		/*
 		if (len(approx) == 4 and cv2.isContourConvex(approx) and maxAreaFound < cv2.contourArea(approx) < MAX_COUNTOUR_AREA)
 		{
@@ -119,19 +119,11 @@ function checkFrame() {
 	}
 	
 	
-	/*
-	// You can try more different parameters
-	height = edges.shape[0];
-	width = edges.shape[1];	
-	MAX_COUNTOUR_AREA = (width - 10) * (height - 10);		
-	
-	maxAreaFound = MAX_COUNTOUR_AREA * 0.5;
-	*/
 	
     //cv.Canny(src, dst, 50, 100, 3, false);
    
     
-    cv.imshow("ui--edge", tmp);
+    cv.imshow("ui--edge", dst);
     edge.style.widht="100%";
     edge.style.height="100%";
     tmp.delete();
