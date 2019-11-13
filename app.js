@@ -113,17 +113,17 @@ function checkFrame() {
 		//approx = cv.approxPolyDP(cnt, 0.03 * perimeter, True)
 	}
 	
-	/*
+	
 	for (let i = 0; i < poly.size(); ++i) {
-		cv.drawContours(tmp, poly, i, new cv.Scalar(255,255,255), 1, 8, hierarchy, 0);
+		cv.drawContours(tmp, poly, i, new cv.Scalar(255,255,255), 1, 8, new cv.Mat(), 0);
 	}
 	
-	*/
+	
 	
     //cv.Canny(src, dst, 50, 100, 3, false);
    
     
-    cv.imshow("ui--edge", dst);
+    cv.imshow("ui--edge", tmp);
     edge.style.widht="100%";
     edge.style.height="100%";
 
