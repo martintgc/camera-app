@@ -66,7 +66,7 @@ function checkFrame() {
 cameraTrigger.onclick = function() {
     let src = new cv.Mat(cameraView.videoHeight, cameraView.videoWidth, cv.CV_8UC4);
     let dst = new cv.Mat(cameraView.videoHeight, cameraView.videoWidth, cv.CV_8UC1);
-    src.data.set(cameraSensor.getContext("2d").getImageData(0, 0, cameraView.videoWidth, cameraView.videoHeight).data);
+    src.data.set(cameraView.getContext("2d").getImageData(0, 0, cameraView.videoWidth, cameraView.videoHeight).data);
     cv.cvtColor(src, dst, cv.COLOR_RGBA2GRAY);
     cv.imshow("ui--edge", dst);
     /*
