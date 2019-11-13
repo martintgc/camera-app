@@ -95,7 +95,7 @@ function checkFrame() {
 	for (let i = 0; i < contours.size(); ++i) {
     		let color = new cv.Scalar(Math.round(Math.random() * 255), Math.round(Math.random() * 255),
                               Math.round(Math.random() * 255));
-    		cv.drawContours(tmp, contours, i, color, 1, cv.LINE_8, hierarchy, 100);
+    		cv.drawContours(tmp, contours, i, color, 1, cv.LINE_8, hierarchy, 0);
 	}
 	/*
 	for (let i = 0; i < contours.size(); ++i) {
