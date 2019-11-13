@@ -76,14 +76,14 @@ function checkFrame() {
     src.data.set(cameraSensor.getContext("2d").getImageData(0, 0, cameraView.videoWidth, cameraView.videoHeight).data);
 
     
-    cv.cvtColor(src, src, cv.COLOR_RGB2GRAY, 0);
-    cv.bilateralFilter(src, 9, 75, 75)		
-    cv.adaptiveThreshold(src, 255, cv.ADAPTIVE_THRESH_GAUSSIAN_C, cv.THRESH_BINARY, 115, 4)		
+    cv2.cvtColor(src, src, cv.COLOR_RGB2GRAY, 0);
+    cv2.bilateralFilter(src, 9, 75, 75)		
+    cv2.adaptiveThreshold(src, 255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C, cv2.THRESH_BINARY, 115, 4)		
 		
-    cv.medianBlur(src, 11)		
+    cv2.medianBlur(src, 11)		
 
-    cv.copyMakeBorder(src, 5, 5, 5, 5, cv2.BORDER_CONSTANT, value=[0, 0, 0])		
-    edges = cv.Canny(src, 200, 250)
+    cv2.copyMakeBorder(src, 5, 5, 5, 5, cv2.BORDER_CONSTANT, value=[0, 0, 0])		
+    edges = cv2.Canny(src, 200, 250)
 
     cv.Canny(src, dst, 50, 100, 3, false);
    
