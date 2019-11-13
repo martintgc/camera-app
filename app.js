@@ -50,23 +50,7 @@ function processVideo() {
 setTimeout(processVideo, 0);
   
 */
-function greatblock() {
 
-let src = new cv.Mat(cameraView.videoHeight, cameraView.videoWidth, cv.CV_8UC4);
-let dst = new cv.Mat(cameraView.videoHeight,cameraView.videoWidth, cv.CV_8UC1);
-let cap = new cv.VideoCapture(cameraView);
-const FPS = 30;
- 
-function processVideo() {
-    let begin = Date.now();
-    cap.read(src);
-    cv.cvtColor(src, dst, cv.COLOR_RGBA2GRAY);
-    cv.imshow("ui--feed", dst);
-    // schedule next one.
-    let delay = 1000/FPS - (Date.now() - begin);
-    setTimeout(processVideo, delay);
-}
-}
 
 
 
@@ -112,7 +96,6 @@ cameraTrigger.onclick = function() {
 // Start the video stream when the window loads
 window.addEventListener("load", cameraStart, false);
 window.addEventListener("load", checkFrame, false);
-window.addEventListener("load", greatblock, false);
 
 // Install ServiceWorker
 if ('serviceWorker' in navigator) {
