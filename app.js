@@ -114,9 +114,9 @@ function checkFrame() {
 	}
 	
 	
-	for (let i = 0; i < poly.size(); ++i) {
-		cv.drawContours(tmp, poly, i, new cv.Scalar(255,255,255), 1, 8, new cv.Mat(), 0);
-	}
+	
+	cv.drawContours(tmp, poly, -1, new cv.Scalar(255,255,255), 1, cv.LINE_AA, new cv.Mat(), 0);
+	
 	
 	
 	
