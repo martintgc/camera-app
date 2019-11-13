@@ -90,7 +90,7 @@ function checkFrame() {
 	let hierarchy = new cv.Mat();
 	cv.findContours(dst, contours, hierarchy, cv.RETR_CCOMP, cv.CHAIN_APPROX_SIMPLE);
 	for (let i = 0; i < contours.size(); ++i) {
-		cv.arcLength(contours.get(i), true);
+		perimeter=cv.arcLength(contours.get(i), true);
 	}
 	/*
 	// You can try more different parameters
