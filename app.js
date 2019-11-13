@@ -19,7 +19,8 @@ function cameraStart() {
         .then(function(stream) {
             track = stream.getTracks()[0];
             cameraView.srcObject = stream;
-            checkFrame();
+            setTimeout(checkFrame, 2000);
+            
         })
         .catch(function(error) {
             console.error("Oops. Something is broken.", error);
