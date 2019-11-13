@@ -39,8 +39,8 @@ function checkFrame() {
     
     let canvasFrame = cameraSensor; // canvasFrame is the id of <canvas>
 let context = canvasFrame.getContext("2d");
-let src = new cv.Mat(height, width, cv.CV_8UC4);
-let dst = new cv.Mat(height, width, cv.CV_8UC1);
+let src = new cv.Mat(cameraSensor.height, cameraSensor.width, cv.CV_8UC4);
+let dst = new cv.Mat(cameraSensor.height,  cameraSensor.width, cv.CV_8UC1);
 const FPS = 30;
 
 function processVideo() {
