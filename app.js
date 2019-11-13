@@ -67,7 +67,7 @@ cameraTrigger.onclick = function() {
     let src = new cv.Mat(cameraView.videoHeight, cameraView.videoWidth, cv.CV_8UC4);
     let dst = new cv.Mat(cameraView.videoHeight, cameraView.videoWidth, cv.CV_8UC1);
     cameraSensor.getContext("2d").drawImage(cameraView, 0, 0)
-    src.data.set(cameraSensor.getContext("2d").getImageData(0, 0, cameraSensor.videoWidth, cameraSensor.videoHeight).data);
+    src.data.set(cameraSensor.getContext("2d").getImageData(0, 0, cameraSensor.width, cameraSensor.height).data);
     cv.cvtColor(src, dst, cv.COLOR_RGBA2GRAY);
     cv.imshow("ui--edge", dst);
     /*
