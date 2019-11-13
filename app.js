@@ -46,7 +46,7 @@ const FPS = 30;
 function processVideo() {
     let begin = Date.now();
     //context.drawImage(video, 0, 0, width, height);
-    src.data.set(context.getImageData(0, 0, width, height).data);
+    src.data.set(context.getImageData(0, 0, cameraView.videoWidth, cameraView.videoHeight).data);
     cv.cvtColor(src, dst, cv.COLOR_RGBA2GRAY);
     cv.imshow("#camera--output", dst); // canvasOutput is the id of another <canvas>;
     // schedule next one.
