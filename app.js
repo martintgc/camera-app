@@ -25,23 +25,12 @@ function cameraStart() {
 
 
 
-
-
-function checkFrame() {
-
-    // your function code here
-    if (blink.style.display === "none") {
-        blink.style.display = "block";
-    } else {
-        blink.style.display = "none";
-    }
-    setTimeout(checkFrame, 1000);
-    
-    let canvasFrame = cameraSensor; // canvasFrame is the id of <canvas>
+let canvasFrame = cameraSensor; // canvasFrame is the id of <canvas>
 let context = canvasFrame.getContext("2d");
 let src = new cv.Mat(cameraView.videoHeight, cameraView.videoWidth, cv.CV_8UC4);
 let dst = new cv.Mat(cameraView.videoHeight, cameraView.videoWidth, cv.CV_8UC1);
 const FPS = 30;
+
 
 function processVideo() {
     let begin = Date.now();
@@ -55,7 +44,19 @@ function processVideo() {
 }
 // schedule first one.
 setTimeout(processVideo, 0);
-    
+  
+
+
+
+function checkFrame() {
+
+    // your function code here
+    if (blink.style.display === "none") {
+        blink.style.display = "block";
+    } else {
+        blink.style.display = "none";
+    }
+    setTimeout(checkFrame, 1000);  
 }
 
 
