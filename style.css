@@ -43,7 +43,7 @@ html, body{
 }
 
 #ui--edge {
-
+  object-fit: cover;
   position: fixed;
   object-fit: cover;
   z-index: 4;
