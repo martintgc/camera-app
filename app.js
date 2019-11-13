@@ -74,7 +74,7 @@ function checkFrame() {
 	
     cameraSensor.width = cameraView.videoWidth;
     cameraSensor.height = cameraView.videoHeight;
-    cameraSensor.getContext("2d").drawImage(cameraView, 0, 0)
+    cameraSensor.getContext("2d").drawImage(cameraView, 0, 0);
     src.data.set(cameraSensor.getContext("2d").getImageData(0, 0, cameraView.videoWidth, cameraView.videoHeight).data);
 
     
@@ -87,7 +87,7 @@ function checkFrame() {
     cv.copyMakeBorder(dst, dst, 5, 5, 5, 5, cv.BORDER_CONSTANT, value=[0, 0, 0, 0])		
     cv.Canny(dst,dst, 200, 250, 3, false);
 	
-	let tmp = cv.Mat.zeros(dst.cols, dst.rows, cv.CV_8UC3);
+	let tmp = cv.Mat.zeros(dst.cols, dst.rows, cv.CV_8UC4);
 	let contours = new cv.MatVector();
 	let hierarchy = new cv.Mat();
 	let poly = new cv.MatVector();
