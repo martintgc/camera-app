@@ -7,6 +7,7 @@ const cameraView = document.querySelector("#camera--view"),
     cameraOutput = document.querySelector("#camera--output"),
     cameraSensor = document.querySelector("#camera--sensor"),
     cameraTrigger = document.querySelector("#camera--trigger"),
+    edge = document.querySelector("#ui--edge"),
     blink = document.querySelector("#ui--blink");
     
 
@@ -67,7 +68,7 @@ cameraTrigger.onclick = function() {
     let dst = new cv.Mat(cameraView.videoHeight, cameraView.videoWidth, cv.CV_8UC1);
     src.data.set(cameraSensor.getContext("2d").getImageData(0, 0, cameraView.videoWidth, cameraView.videoHeight).data);
     cv.cvtColor(src, dst, cv.COLOR_RGBA2GRAY);
-    cv.imshow(cameraOutput, dst);
+    cv.imshow(edge, dst);
     /*
     cameraSensor.width = cameraView.videoWidth;
     cameraSensor.height = cameraView.videoHeight;
