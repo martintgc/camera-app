@@ -83,7 +83,7 @@ function checkFrame() {
     cv.medianBlur(dst, dst, 11)		
 
     cv.copyMakeBorder(dst, dst, 5, 5, 5, 5, cv.BORDER_CONSTANT, value=[0, 0, 0, 0])		
-    edges = cv.Canny(dst, 200, 250)
+    edges = cv.Canny(dst,dst, 200, 250, 3, false);
 
     cv.Canny(src, dst, 50, 100, 3, false);
    
