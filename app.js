@@ -135,6 +135,7 @@ function checkFrame() {
     edge.style.widht="100%";
     edge.style.height="100%";
     tmp.delete();
+	poly.delete();
     setTimeout(checkFrame, 1000);  
 }
 
