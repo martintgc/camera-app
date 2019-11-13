@@ -13,15 +13,13 @@ const cameraView = document.querySelector("#camera--view"),
     
 
 // Access the device camera and stream to cameraView
-function cameraStart() {
-    
-
-    
-    await navigator.mediaDevices
+function cameraStart() { 
+   navigator.mediaDevices
         .getUserMedia(constraints)
         .then(function(stream) {
             track = stream.getTracks()[0];
             cameraView.srcObject = stream;
+            checkFrame();
         })
         .catch(function(error) {
             console.error("Oops. Something is broken.", error);
@@ -71,8 +69,8 @@ function checkFrame() {
     console.log(cameraSensor.width);
     console.log(cameraSensor.height);
     edge.style.opacity=0.5;
-    let src = new cv.Mat(cameraSensor.height, cameraSensor.width, cv.CV_8UC4);
-    let dst = new cv.Mat(cameraSensor.height, cameraSensor.width, cv.CV_8UC1);
+    let src = new cv.Mat(cameraView.videoHeight, cameraView.videoWidth, cv.CV_8UC4);
+    let dst = new cv.Mat(cameraView.videoHeight, cameraView.videoWidth, cv.CV_8UC1);
     cameraSensor.width = cameraView.videoWidth;
     cameraSensor.height = cameraView.videoHeight;
     cameraSensor.getContext("2d").drawImage(cameraView, 0, 0)
@@ -121,7 +119,7 @@ cameraTrigger.onclick = function() {
 
 // Start the video stream when the window loads
 window.addEventListener("load", cameraStart, false);
-window.addEventListener("load", checkFrame, false);
+//window.addEventListener("load", checkFrame, false);
 
 // Install ServiceWorker
 if ('serviceWorker' in navigator) {
