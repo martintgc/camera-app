@@ -24,7 +24,7 @@ function cameraStart() {
 }
 
 
-
+/*
 let canvasFrame = cameraSensor; // canvasFrame is the id of <canvas>
 let context = canvasFrame.getContext("2d");
 let src = new cv.Mat(cameraView.videoHeight, cameraView.videoWidth, cv.CV_8UC4);
@@ -45,7 +45,7 @@ function processVideo() {
 // schedule first one.
 setTimeout(processVideo, 0);
   
-
+*/
 
 
 function checkFrame() {
@@ -63,10 +63,17 @@ function checkFrame() {
 
 // Take a picture when cameraTrigger is tapped
 cameraTrigger.onclick = function() {
+    let src = new cv.Mat(cameraView.videoHeight, cameraView.videoWidth, cv.CV_8UC4);
+    let dst = new cv.Mat(cameraView.videoHeight, cameraView.videoWidth, cv.CV_8UC1);
+    src.data.set(cameraView.getImageData(0, 0, cameraView.videoWidth, cameraView.videoHeight).data);
+    cv.cvtColor(src, dst, cv.COLOR_RGBA2GRAY);
+    cv.imshow(cameraOutput, dst);
+    /*
     cameraSensor.width = cameraView.videoWidth;
     cameraSensor.height = cameraView.videoHeight;
     cameraSensor.getContext("2d").drawImage(cameraView, 0, 0);
     cameraOutput.src = cameraSensor.toDataURL("image/webp");
+    */
     cameraOutput.classList.add("taken");
     // track.stop();
 };
