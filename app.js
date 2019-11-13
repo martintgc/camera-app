@@ -98,7 +98,7 @@ function checkFrame() {
                               Math.round(Math.random() * 255));
     		cv.drawContours(tmp, contours, i, color, 1, cv.LINE_8, hierarchy, 0);
 	}
-	*/
+	
 	
 	for (let i = 0; i < contours.size(); ++i) {
 		
@@ -111,7 +111,7 @@ function checkFrame() {
 		
 	}
 	
-	
+	*/
 	
 	cv.drawContours(tmp, contours, -1, new cv.Scalar(255,255,255), 1, cv.LINE_AA, hierarchy, 0);
 	
