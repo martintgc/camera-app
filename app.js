@@ -84,8 +84,8 @@ function checkFrame() {
     cv.medianBlur(dst, dst, 11)		
 
     cv.copyMakeBorder(dst, dst, 5, 5, 5, 5, cv.BORDER_CONSTANT, value=[0, 0, 0, 0])		
-    edges = cv.Canny(dst,dst, 200, 250, 3, false);
-	
+    cv.Canny(dst,dst, 200, 250, 3, false);
+	/*
 	
 	let contours = new cv.MatVector();
 	let hierarchy = new cv.Mat();
@@ -102,20 +102,12 @@ function checkFrame() {
 		if (cv.isContourConvex(tmp)) {
 		    poly.push_back(tmp);
 		}
-		/*
-		if (len(approx) == 4 and cv2.isContourConvex(approx) and maxAreaFound < cv2.contourArea(approx) < MAX_COUNTOUR_AREA)
-		{
-        		maxAreaFound = cv2.contourArea(approx)		   
-			pageContour = approx
-			
-		}
-		*/
-		//approx = cv.approxPolyDP(cnt, 0.03 * perimeter, True)
+		
 	}
 	
 	
-	
-	cv.drawContours(tmp, contours, -1, new cv.Scalar(255,255,255), 1, cv.LINE_AA, hierarchy, 0);
+	*/
+	//cv.drawContours(tmp, contours, -1, new cv.Scalar(255,255,255), 1, cv.LINE_AA, hierarchy, 0);
 	
 	
 	
@@ -123,7 +115,7 @@ function checkFrame() {
     //cv.Canny(src, dst, 50, 100, 3, false);
    
     
-    cv.imshow("ui--edge", tmp);
+    cv.imshow("ui--edge", dst);
     edge.style.widht="100%";
     edge.style.height="100%";
 
