@@ -107,7 +107,7 @@ function checkFrame() {
 		perimeter=cv.arcLength(cnt, true);
 		//approx=cv.approxPolyDP(cnt, tmp, 3, true);
 		
-		cv.drawContours(tmp, contours, i, new cv.Scalar(255,255,255), 1, cv.LINE_8, new cv.Mat(), 0);
+		cv.drawContours(tmp, contours, i, new cv.Scalar(255,255,255), 1, cv.LINE_8, hierarchy, 0);
 	
 		
 		
