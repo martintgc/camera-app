@@ -31,7 +31,7 @@ function checkFrame() {
     } else {
         blink.style.display = "none";
     }
-    setTimeout(checkFrame, 5000);
+    setTimeout(checkFrame, 1000);
 }
 
 
