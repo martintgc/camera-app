@@ -134,7 +134,7 @@ function checkFrame() {
     cv.imshow("ui--edge", tmp);
     edge.style.widht="100%";
     edge.style.height="100%";
-    
+    tmp.delete();
     setTimeout(checkFrame, 1000);  
 }
 
