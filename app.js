@@ -113,12 +113,12 @@ function checkFrame() {
 		//approx = cv.approxPolyDP(cnt, 0.03 * perimeter, True)
 	}
 	
-	
+	/*
 	for (let i = 0; i < poly.size(); ++i) {
 		cv.drawContours(tmp, poly, i, new cv.Scalar(255,255,255), 1, 8, hierarchy, 0);
 	}
 	
-	
+	*/
 	
     //cv.Canny(src, dst, 50, 100, 3, false);
    
@@ -126,8 +126,7 @@ function checkFrame() {
     cv.imshow("ui--edge", dst);
     edge.style.widht="100%";
     edge.style.height="100%";
-    tmp.delete();
-	poly.delete();
+
     setTimeout(checkFrame, 1000);  
 }
 
