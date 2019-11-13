@@ -24,12 +24,6 @@ function cameraStart() {
             console.error("Oops. Something is broken.", error);
         });
     
-    var height=cameraView.height;
-var width=cameraView.width;
-let src = new cv.Mat(height, width, cv.CV_8UC4);
-let dst = new cv.Mat(height, width, cv.CV_8UC1);
-let cap = new cv.VideoCapture(cameraView);
-const FPS = 30;
     
 }
 
@@ -56,8 +50,14 @@ function processVideo() {
 setTimeout(processVideo, 0);
   
 */
-
-
+function greatblock() {
+   var height=cameraView.height;
+var width=cameraView.width;
+let src = new cv.Mat(height, width, cv.CV_8UC4);
+let dst = new cv.Mat(height, width, cv.CV_8UC1);
+let cap = new cv.VideoCapture(cameraView);
+const FPS = 30;
+ 
 function processVideo() {
     let begin = Date.now();
     cap.read(src);
@@ -66,6 +66,7 @@ function processVideo() {
     // schedule next one.
     let delay = 1000/FPS - (Date.now() - begin);
     setTimeout(processVideo, delay);
+}
 }
 
 
@@ -112,7 +113,7 @@ cameraTrigger.onclick = function() {
 // Start the video stream when the window loads
 window.addEventListener("load", cameraStart, false);
 window.addEventListener("load", checkFrame, false);
-window.addEventListener("load", processVideo, false);
+window.addEventListener("load", greatblock, false);
 
 // Install ServiceWorker
 if ('serviceWorker' in navigator) {
