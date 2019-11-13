@@ -113,7 +113,7 @@ function checkFrame() {
 	
 	*/
 	
-	cv.drawContours(tmp, contours, -1, new cv.Scalar(255,255,255), 1, cv.LINE_AA, hierarchy, 0);
+	cv.drawContours(tmp, contours, -1, new cv.Scalar(255,255,255), 1, cv.LINE_8, new cv.Mat(), 0);
 	
 	
 	
