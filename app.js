@@ -84,7 +84,23 @@ function checkFrame() {
 
     cv.copyMakeBorder(dst, dst, 5, 5, 5, 5, cv.BORDER_CONSTANT, value=[0, 0, 0, 0])		
     edges = cv.Canny(dst,dst, 200, 250, 3, false);
-
+	//cv.findContours(edges, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
+	
+	let contours = new cv.MatVector();
+	let hierarchy = new cv.Mat();
+	cv.findContours(dst, contours, hierarchy, cv.RETR_CCOMP, cv.CHAIN_APPROX_SIMPLE);
+	for (let i = 0; i < contours.size(); ++i) {
+		cv.arcLength(contours[i], true);
+	}
+	/*
+	// You can try more different parameters
+	height = edges.shape[0];
+	width = edges.shape[1];	
+	MAX_COUNTOUR_AREA = (width - 10) * (height - 10);		
+	
+	maxAreaFound = MAX_COUNTOUR_AREA * 0.5;
+	*/
+	
     //cv.Canny(src, dst, 50, 100, 3, false);
    
     
