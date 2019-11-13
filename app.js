@@ -99,7 +99,7 @@ function checkFrame() {
 		approx=cv.approxPolyDP(cnt, tmp, 3, true);
 		
 		
-		if (cv.isContourConvex(approx)) {
+		if (cv.isContourConvex(tmp)) {
 		    poly.push_back(tmp);
 		    }
 		/*
