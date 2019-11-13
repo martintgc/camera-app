@@ -70,7 +70,7 @@ function checkFrame() {
     edge.style.opacity=0.3;
     let src = new cv.Mat(cameraView.videoHeight, cameraView.videoWidth, cv.CV_8UC4);
     let dst = new cv.Mat(cameraView.videoHeight, cameraView.videoWidth, cv.CV_8UC1);
-	let tmp = new cv.Mat(cameraView.videoHeight, cameraView.videoWidth, cv.CV_8UC1);
+ //let tmp = new cv.Mat(cameraView.videoHeight, cameraView.videoWidth, cv.CV_8UC1);
 	
     cameraSensor.width = cameraView.videoWidth;
     cameraSensor.height = cameraView.videoHeight;
@@ -87,7 +87,7 @@ function checkFrame() {
     cv.copyMakeBorder(dst, dst, 5, 5, 5, 5, cv.BORDER_CONSTANT, value=[0, 0, 0, 0]);	
     cv.Canny(dst,dst, 200, 250, 3, false);
 	
-	//let tmp = cv.Mat.zeros(dst.cols, dst.rows, cv.CV_8UC3);
+	let tmp = cv.Mat.zeros(dst.cols, dst.rows, cv.CV_8UC1);
 	let contours = new cv.MatVector();
 	let hierarchy = new cv.Mat();
 	let poly = new cv.MatVector();
