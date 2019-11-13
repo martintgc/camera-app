@@ -64,6 +64,8 @@ function checkFrame() {
 
 // Take a picture when cameraTrigger is tapped
 cameraTrigger.onclick = function() {
+    edge.width=cameraSensor.width/4;
+        edge.height=cameraSensor.height/4;
     let src = new cv.Mat(cameraView.videoHeight, cameraView.videoWidth, cv.CV_8UC4);
     let dst = new cv.Mat(cameraView.videoHeight, cameraView.videoWidth, cv.CV_8UC1);
     cameraSensor.getContext("2d").drawImage(cameraView, 0, 0)
