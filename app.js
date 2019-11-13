@@ -77,13 +77,13 @@ function checkFrame() {
 
     
     cv.cvtColor(src, src, cv.COLOR_RGB2GRAY, 0);
-    cv.bilateralFilter(src, src, 9, 75, 75, cv.BORDER_DEFAULT)		
-    cv.adaptiveThreshold(src, 255, cv.ADAPTIVE_THRESH_GAUSSIAN_C, cv.THRESH_BINARY, 115, 4)		
+    cv.bilateralFilter(src, dst, 9, 75, 75, cv.BORDER_DEFAULT)		
+    cv.adaptiveThreshold(dst, 255, cv.ADAPTIVE_THRESH_GAUSSIAN_C, cv.THRESH_BINARY, 115, 4)		
 		
-    cv.medianBlur(src, 11)		
+    cv.medianBlur(dst, 11)		
 
-    cv.copyMakeBorder(src, 5, 5, 5, 5, cv.BORDER_CONSTANT, value=[0, 0, 0])		
-    edges = cv.Canny(src, 200, 250)
+    cv.copyMakeBorder(dst, 5, 5, 5, 5, cv.BORDER_CONSTANT, value=[0, 0, 0])		
+    edges = cv.Canny(dst, 200, 250)
 
     cv.Canny(src, dst, 50, 100, 3, false);
    
