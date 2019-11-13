@@ -32,6 +32,13 @@ html, body{
     left: calc(50% - 100px);
 }
 
+#ui--blink {
+  position: fixed;
+    bottom: 30px;
+  left: 20px;
+  z-index:3;
+}
+
 .taken{
     height: 100px!important;
     width: 100px!important;
