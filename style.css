@@ -32,7 +32,9 @@ html, body{
     left: calc(50% - 100px);
 }
 
-#ui--blink {
+#ui--blink{
+  width: 20px;
+  height: 20px;
   position: fixed;
     bottom: 30px;
   left: 20px;
