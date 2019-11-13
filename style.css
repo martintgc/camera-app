@@ -17,6 +17,11 @@ html, body{
     //filter: FlipH;
 }
 
+#camera--view {
+display: none;
+}
+
+
 #camera--trigger{
     width: 200px;
     background-color: black;
@@ -47,6 +52,13 @@ html, body{
   position: fixed;
   object-fit: cover;
   z-index: 4;
+}
+
+#ui--feed {
+    object-fit: cover;
+  position: fixed;
+  object-fit: cover;
+  z-index: 5;
 }
 
 .taken{
