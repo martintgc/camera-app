@@ -63,7 +63,7 @@ function checkFrame() {
     } else {
         blink.style.display = "none";
     }
-    
+    /*
     edge.width=cameraSensor.width;
     edge.height=cameraSensor.height;
     console.log(cameraSensor.width);
@@ -85,7 +85,7 @@ function checkFrame() {
     cv.imshow("ui--edge", dst);
     edge.style.widht="100%";
     edge.style.height="100%";
-    
+    */
     setTimeout(checkFrame, 1000);  
 }
 
