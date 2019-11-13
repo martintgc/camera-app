@@ -70,6 +70,7 @@ function checkFrame() {
     edge.style.opacity=0.5;
     let src = new cv.Mat(cameraView.videoHeight, cameraView.videoWidth, cv.CV_8UC4);
     let dst = new cv.Mat(cameraView.videoHeight, cameraView.videoWidth, cv.CV_8UC1);
+	let tmp = new cv.Mat(cameraView.videoHeight, cameraView.videoWidth, cv.CV_8UC1);
     cameraSensor.width = cameraView.videoWidth;
     cameraSensor.height = cameraView.videoHeight;
     cameraSensor.getContext("2d").drawImage(cameraView, 0, 0)
@@ -96,7 +97,11 @@ function checkFrame() {
 		
 		perimeter=cv.arcLength(cnt, true);
 		approx=cv.approxPolyDP(cnt, tmp, 3, true);
-		poly.push_back(tmp);
+		
+		
+		if (approx.length()==4 {
+		    poly.push_back(tmp);
+		    }
 		/*
 		if (len(approx) == 4 and cv2.isContourConvex(approx) and maxAreaFound < cv2.contourArea(approx) < MAX_COUNTOUR_AREA)
 		{
@@ -110,7 +115,7 @@ function checkFrame() {
 	
 	
 	for (let i = 0; i < poly.size(); ++i) {
-		cv.drawContours(dst, poly, i, new cv.Scalar(255,255,255), 1, 8, hierarchy, 0);
+		cv.drawContours(tmp, poly, i, new cv.Scalar(255,255,255), 1, 8, hierarchy, 0);
 	}
 	
 	
@@ -126,7 +131,7 @@ function checkFrame() {
     //cv.Canny(src, dst, 50, 100, 3, false);
    
     
-    cv.imshow("ui--edge", dst);
+    cv.imshow("ui--edge", tmp);
     edge.style.widht="100%";
     edge.style.height="100%";
     
