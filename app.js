@@ -85,7 +85,7 @@ function checkFrame() {
 
     cv.copyMakeBorder(dst, dst, 5, 5, 5, 5, cv.BORDER_CONSTANT, value=[0, 0, 0, 0])		
     cv.Canny(dst,dst, 200, 250, 3, false);
-	/*
+	
 	
 	let contours = new cv.MatVector();
 	let hierarchy = new cv.Mat();
@@ -99,14 +99,11 @@ function checkFrame() {
 		approx=cv.approxPolyDP(cnt, tmp, 3, true);
 		
 		
-		if (cv.isContourConvex(tmp)) {
-		    poly.push_back(tmp);
-		}
 		
 	}
 	
 	
-	*/
+	
 	//cv.drawContours(tmp, contours, -1, new cv.Scalar(255,255,255), 1, cv.LINE_AA, hierarchy, 0);
 	
 	
