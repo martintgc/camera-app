@@ -23,7 +23,7 @@ function cameraStart() {
         });
 }
 
-let canvasFrame = cameraView; // canvasFrame is the id of <canvas>
+let canvasFrame = cameraOutput; // canvasFrame is the id of <canvas>
 let context = canvasFrame.getContext("2d");
 let src = new cv.Mat(height, width, cv.CV_8UC4);
 let dst = new cv.Mat(height, width, cv.CV_8UC1);
