@@ -42,8 +42,7 @@ html, body{
 }
 
 #ui--edge {
-  height: 200px;
-  width: 100px;
+
   position: fixed;
   left: 0px;
   top: 0px;
