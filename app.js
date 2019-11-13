@@ -23,6 +23,14 @@ function cameraStart() {
         .catch(function(error) {
             console.error("Oops. Something is broken.", error);
         });
+    
+    var height=cameraView.height;
+var width=cameraView.width;
+let src = new cv.Mat(height, width, cv.CV_8UC4);
+let dst = new cv.Mat(height, width, cv.CV_8UC1);
+let cap = new cv.VideoCapture(cameraView);
+const FPS = 30;
+    
 }
 
 
@@ -48,12 +56,7 @@ function processVideo() {
 setTimeout(processVideo, 0);
   
 */
-var height=cameraView.height;
-var width=cameraView.width;
-let src = new cv.Mat(height, width, cv.CV_8UC4);
-let dst = new cv.Mat(height, width, cv.CV_8UC1);
-let cap = new cv.VideoCapture(cameraView);
-const FPS = 30;
+
 
 function processVideo() {
     let begin = Date.now();
