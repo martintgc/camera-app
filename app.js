@@ -92,14 +92,16 @@ function checkFrame() {
 	let hierarchy = new cv.Mat();
 	let poly = new cv.MatVector();
 	cv.findContours(dst, contours, hierarchy, cv.RETR_CCOMP, cv.CHAIN_APPROX_SIMPLE);
+	/*
 	for (let i = 0; i < contours.size(); ++i) {
     		let color = new cv.Scalar(Math.round(Math.random() * 255), Math.round(Math.random() * 255),
                               Math.round(Math.random() * 255));
     		cv.drawContours(tmp, contours, i, color, 1, cv.LINE_8, hierarchy, 0);
 	}
-	/*
+	*/
+	
 	for (let i = 0; i < contours.size(); ++i) {
-		let tmp = new cv.Mat();
+		
     		let cnt = contours.get(i);
 		
 		perimeter=cv.arcLength(cnt, true);
@@ -108,10 +110,10 @@ function checkFrame() {
 		
 		
 	}
-	*/
 	
 	
-	//cv.drawContours(tmp, contours, -1, new cv.Scalar(255,255,255), 1, cv.LINE_AA, hierarchy, 0);
+	
+	cv.drawContours(tmp, contours, -1, new cv.Scalar(255,255,255), 1, cv.LINE_AA, new cv.Mat(), 0);
 	
 	
 	
