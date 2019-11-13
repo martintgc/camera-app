@@ -6,7 +6,9 @@ var track = null;
 const cameraView = document.querySelector("#camera--view"),
     cameraOutput = document.querySelector("#camera--output"),
     cameraSensor = document.querySelector("#camera--sensor"),
-    cameraTrigger = document.querySelector("#camera--trigger");
+    cameraTrigger = document.querySelector("#camera--trigger"),
+    blink = document.querySelector("#ui--blink");
+    
 
 // Access the device camera and stream to cameraView
 function cameraStart() {
@@ -21,6 +23,19 @@ function cameraStart() {
         });
 }
 
+function checkFrame() {
+
+    // your function code here
+    if (blink.style.display === "none") {
+        blink.style.display = "block";
+    } else {
+        blink.style.display = "none";
+    }
+    setTimeout(checkFrame, 5000);
+}
+
+
+
 // Take a picture when cameraTrigger is tapped
 cameraTrigger.onclick = function() {
     cameraSensor.width = cameraView.videoWidth;
@@ -33,6 +48,7 @@ cameraTrigger.onclick = function() {
 
 // Start the video stream when the window loads
 window.addEventListener("load", cameraStart, false);
+window.addEventListener("load", checkFrame, false);
 
 
 // Install ServiceWorker
