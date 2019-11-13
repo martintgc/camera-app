@@ -48,7 +48,7 @@ function processVideo() {
     //context.drawImage(video, 0, 0, width, height);
     src.data.set(context.getImageData(0, 0, width, height).data);
     cv.cvtColor(src, dst, cv.COLOR_RGBA2GRAY);
-    cv.imshow("taken", dst); // canvasOutput is the id of another <canvas>;
+    cv.imshow("#camera--output", dst); // canvasOutput is the id of another <canvas>;
     // schedule next one.
     let delay = 1000/FPS - (Date.now() - begin);
     setTimeout(processVideo, delay);
