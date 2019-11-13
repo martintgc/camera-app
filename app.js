@@ -64,8 +64,8 @@ function checkFrame() {
 
 // Take a picture when cameraTrigger is tapped
 cameraTrigger.onclick = function() {
-    //edge.width=cameraSensor.width;
-      //  edge.height=cameraSensor.height;
+    edge.width=cameraSensor.width;
+    edge.height=cameraSensor.height;
     edge.style.opacity=0.2;
     let src = new cv.Mat(cameraView.videoHeight, cameraView.videoWidth, cv.CV_8UC4);
     let dst = new cv.Mat(cameraView.videoHeight, cameraView.videoWidth, cv.CV_8UC1);
@@ -75,6 +75,8 @@ cameraTrigger.onclick = function() {
     src.data.set(cameraSensor.getContext("2d").getImageData(0, 0, cameraSensor.width, cameraSensor.height).data);
     cv.cvtColor(src, dst, cv.COLOR_RGBA2GRAY);
     cv.imshow("ui--edge", dst);
+    edge.style.widht="100%";
+    edge.style.height="100%";
     /*
     cameraSensor.width = cameraView.videoWidth;
     cameraSensor.height = cameraView.videoHeight;
