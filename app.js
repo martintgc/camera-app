@@ -23,7 +23,7 @@ function cameraStart() {
         });
 }
 
-let canvasFrame = cameraOutput; // canvasFrame is the id of <canvas>
+let canvasFrame = cameraView; // canvasFrame is the id of <canvas>
 let context = canvasFrame.getContext("2d");
 let src = new cv.Mat(height, width, cv.CV_8UC4);
 let dst = new cv.Mat(height, width, cv.CV_8UC1);
@@ -34,7 +34,7 @@ function processVideo() {
     //context.drawImage(video, 0, 0, width, height);
     src.data.set(context.getImageData(0, 0, width, height).data);
     cv.cvtColor(src, dst, cv.COLOR_RGBA2GRAY);
-    cv.imshow("canvasOutput", dst); // canvasOutput is the id of another <canvas>;
+    cv.imshow("taken", dst); // canvasOutput is the id of another <canvas>;
     // schedule next one.
     let delay = 1000/FPS - (Date.now() - begin);
     setTimeout(processVideo, delay);
