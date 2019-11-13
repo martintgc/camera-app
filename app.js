@@ -119,7 +119,7 @@ function checkFrame() {
     //cv.Canny(src, dst, 50, 100, 3, false);
    
     
-    cv.imshow("ui--edge", dst);
+    cv.imshow("ui--edge", tmp);
     edge.style.widht="100%";
     edge.style.height="100%";
 
