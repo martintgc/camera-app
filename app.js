@@ -87,15 +87,15 @@ function checkFrame() {
 		cv.approxPolyDP(cnt, cnt_tmp, 0.03 * perimeter, true);
 		if (cnt_tmp.size==4) {
 		    poly.push_back(cnt_tmp);
-		    }
-		//cv.drawContours(tmp, cnt_tmp, i, new cv.Scalar(255,255,255), 1, cv.LINE_8, new cv.Mat(), 0);
+		 }
+		cv.drawContours(tmp, contours, i, new cv.Scalar(255,255,255), 1, cv.LINE_8, new cv.Mat(), 0);
 	
 		
 		
 	}
 	
 	for (let j = 0; j < poly.size(); ++j) {
-		cv.drawContours(tmp, poly, j, new cv.Scalar(255,255,255), 1, cv.LINE_8, new cv.Mat(), 0);
+		cv.drawContours(tmp, poly, j, new cv.Scalar(255,0,0), 2, cv.LINE_8, new cv.Mat(), 0);
 	}
 	
 	
