@@ -88,7 +88,7 @@ function checkFrame() {
     cv.Canny(dst,dst, 200, 250, 3, false);
 	
 	//let tmp = cv.Mat.zeros(dst.cols, dst.rows, cv.CV_8UC1);
-	tmp.zeros(cameraView.videoHeight, cameraView.videoWidth, cv.CV_8UC1);
+	let tmp=cv.Mat.zeros(cameraView.videoHeight, cameraView.videoWidth, cv.CV_8UC1);
 	let contours = new cv.MatVector();
 	let hierarchy = new cv.Mat();
 	let poly = new cv.MatVector();
