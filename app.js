@@ -30,29 +30,6 @@ function cameraStart() {
 }
 
 
-/*
-let canvasFrame = cameraSensor; // canvasFrame is the id of <canvas>
-let context = canvasFrame.getContext("2d");
-let src = new cv.Mat(cameraView.videoHeight, cameraView.videoWidth, cv.CV_8UC4);
-let dst = new cv.Mat(cameraView.videoHeight, cameraView.videoWidth, cv.CV_8UC1);
-const FPS = 30;
-
-
-function processVideo() {
-    let begin = Date.now();
-    //context.drawImage(video, 0, 0, width, height);
-    src.data.set(context.getImageData(0, 0, cameraView.videoWidth, cameraView.videoHeight).data);
-    cv.cvtColor(src, dst, cv.COLOR_RGBA2GRAY);
-    cv.imshow("#camera--output", dst); // canvasOutput is the id of another <canvas>;
-    // schedule next one.
-    let delay = 1000/FPS - (Date.now() - begin);
-    setTimeout(processVideo, delay);
-}
-// schedule first one.
-setTimeout(processVideo, 0);
-  
-*/
-
 
 
 
@@ -92,6 +69,7 @@ function checkFrame() {
 	let contours = new cv.MatVector();
 	let hierarchy = new cv.Mat();
 	let poly = new cv.MatVector();
+	let cnt_tmp = new cv.Mat();
 	cv.findContours(dst, contours, hierarchy, cv.RETR_CCOMP, cv.CHAIN_APPROX_SIMPLE);
 	/*
 	for (let i = 0; i < contours.size(); ++i) {
@@ -99,16 +77,18 @@ function checkFrame() {
                               Math.round(Math.random() * 255));
     		cv.drawContours(tmp, contours, i, color, 1, cv.LINE_8, hierarchy, 0);
 	}
-	
 	*/
+	
 	for (let i = 0; i < contours.size(); ++i) {
 		
     		let cnt = contours.get(i);
 		
 		perimeter=cv.arcLength(cnt, true);
-		//approx=cv.approxPolyDP(cnt, tmp, 3, true);
-		
-		cv.drawContours(tmp, contours, i, new cv.Scalar(255,255,255), 1, cv.LINE_8, hierarchy, 0);
+		approx=cv.approxPolyDP(cnt, cnt_tmp, 3, true);
+		if () {
+		    poly.push_back(cnt_tmp);
+		    }
+		cv.drawContours(tmp, cnt_tmp, i, new cv.Scalar(255,255,255), 1, cv.LINE_8, new cv.Mat(), 0);
 	
 		
 		
