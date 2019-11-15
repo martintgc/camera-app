@@ -1,6 +1,7 @@
 // Set constraints for the video stream
 var constraints = { video: { facingMode: { exact: "environment" } }, audio: false };
 var track = null;
+var pagecontour=null;
 
 // Define constants
 const cameraView = document.querySelector("#camera--view"),
@@ -100,8 +101,9 @@ let edges = new cv.Mat(cameraView.videoHeight, cameraView.videoWidth, cv.CV_8UC3
 		   ) {
 			console.log("contarea:"+cv.contourArea(cnt_tmp));
 		    poly.push_back(cnt_tmp);
+			pagecontour=cnt_tmp;
 		 }
-		cv.drawContours(tmp, contours, i, new cv.Scalar(255,255,255), 1, cv.LINE_8, new cv.Mat(), 0);
+		//cv.drawContours(tmp, contours, i, new cv.Scalar(255,255,255), 1, cv.LINE_8, new cv.Mat(), 0);
 	
 		
 		
