@@ -75,7 +75,7 @@ let edges = new cv.Mat(cameraView.videoHeight, cameraView.videoWidth, cv.CV_8UC3
     cv.Canny(dst,dst, 200, 250, 3, false);
 	
 	//let tmp = cv.Mat.zeros(dst.cols, dst.rows, cv.CV_8UC1);
-	//tmp=cv.Mat.zeros(cameraView.videoHeight, cameraView.videoWidth, cv.CV_8UC1);
+	tmp=cv.Mat.zeros(cameraView.videoHeight, cameraView.videoWidth, cv.CV_8UC1);
 	edges=cv.Mat.zeros(cameraView.videoHeight, cameraView.videoWidth, cv.CV_8UC3);
 	
 	let contours = new cv.MatVector();
@@ -114,12 +114,30 @@ let edges = new cv.Mat(cameraView.videoHeight, cameraView.videoWidth, cv.CV_8UC3
 		
 		
 	}
+	
 	/*
-	var targetPlane=[[0, 0],[0, spheight],[spwidth, spheight],[spwidth, 0]];
-	let srcTri = cv.matFromArray(4, 1, cv.CV_32FC2, [56, 65, 368, 52, 28, 387, 389, 390]);
-	let dstTri = cv.matFromArray(4, 1, cv.CV_32FC2, [0, 0, 300, 0, 0, 300, 300, 300]);
-	let M = cv.getPerspectiveTransform(srcTri, dstTri);
+	//var targetPlane=[[0, 0],[0, spheight],[spwidth, spheight],[spwidth, 0]];
 	*/
+	//get the longest x and y axis of our contour (euclidian):
+	let rect = cv.boundingRect(cnt_tmp);
+	
+	
+	let point1 = new cv.Point(rect.x, rect.y);
+	let point2 = new cv.Point(rect.x + rect.width, rect.y + rect.height);
+	
+	//create the optimal rectangular plane
+	var targetPlane=[0,0,0,rect.height,rect.width,rect.height,rect.width,0];
+	
+	let srcTri = cv.matFromArray(4, 1, cv.CV_32FC2, [56, 65, 368, 52, 28, 387, 389, 390]);
+	let dstTri = cv.matFromArray(4, 1, cv.CV_32FC2, targetPlane);
+	let M = cv.getPerspectiveTransform(srcTri, dstTri);
+	cv.warpPerspective(dst, tmp, M, dsize, cv.INTER_LINEAR, cv.BORDER_CONSTANT, new cv.Scalar());
+	
+	
+	//M = cv2.getPerspectiveTransform(sPoints, tPoints) 		
+	//newImage = cv2.warpPerspective(image, M, (int(width), int(height)))
+	cv.imshow("ui--edge", tmp);
+	
 	let color=null;
 	if (currentArea>maxAreaFound) {
 		color=new cv.Scalar(255,0,0)	
