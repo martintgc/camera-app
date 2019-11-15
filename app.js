@@ -122,13 +122,12 @@ let edges = new cv.Mat(cameraView.videoHeight, cameraView.videoWidth, cv.CV_8UC3
 	let rect = cv.boundingRect(cnt_tmp);
 	
 	
-	let point1 = new cv.Point(rect.x, rect.y);
-	let point2 = new cv.Point(rect.x + rect.width, rect.y + rect.height);
+	
 	
 	//create the optimal rectangular plane
 	var targetPlane=[0,0,0,rect.height,rect.width,rect.height,rect.width,0];
 	
-	let srcTri = cv.matFromArray(4, 1, cv.CV_32FC2, [56, 65, 368, 52, 28, 387, 389, 390]);
+	let srcTri = cv.matFromArray(4, 1, cv.CV_32FC2, targetPlane);
 	let dstTri = cv.matFromArray(4, 1, cv.CV_32FC2, targetPlane);
 	let M = cv.getPerspectiveTransform(srcTri, dstTri);
 	cv.warpPerspective(src, tmp, M, dsize, cv.INTER_LINEAR, cv.BORDER_CONSTANT, new cv.Scalar());
