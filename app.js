@@ -160,7 +160,7 @@ let edges = new cv.Mat(cameraView.videoHeight, cameraView.videoWidth, cv.CV_8UC3
 	
 
 }
-cameraTrigger.onclick = function() {
+dismissTrigger.onclick = function() {
 	document.querySelector("#ui--capdiv").style.display="none";
 }
 
