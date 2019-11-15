@@ -88,6 +88,7 @@ let edges = new cv.Mat(cameraView.videoHeight, cameraView.videoWidth, cv.CV_8UC3
 		perimeter=cv.arcLength(cnt, true);
 		cv.approxPolyDP(cnt, cnt_tmp, 0.03 * perimeter, true);
 		//if (cnt_tmp.size==4) {
+		console.log(cnt_tmp.size);
 		if (cv.isContourConvex(cnt_tmp)) {
 		    poly.push_back(cnt_tmp);
 		 }
