@@ -56,8 +56,8 @@ html, body{
 
   position: fixed;
  opacity: 0.5;
-    width: 25%;
-  object-fit: cover;
+    //width: 25%;
+  //object-fit: cover;
   z-index: 6;
 }
 
