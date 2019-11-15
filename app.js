@@ -41,7 +41,9 @@ function checkFrame() {
     } else {
         blink.style.display = "none";
     }
-    
+    let MAX_COUNTOUR_AREA = (cameraSensor.width - 10) * (cameraSensor.height - 10);
+let maxAreaFound = MAX_COUNTOUR_AREA * 0.5;
+	
     edge.width=cameraSensor.width;
     edge.height=cameraSensor.height;
     edge.style.opacity=0.3;
@@ -89,7 +91,11 @@ let edges = new cv.Mat(cameraView.videoHeight, cameraView.videoWidth, cv.CV_8UC3
 		cv.approxPolyDP(cnt, cnt_tmp, 0.03 * perimeter, true);
 		//if (cnt_tmp.size==4) {
 		//console.log(cnt_tmp.size());
-		if (cv.isContourConvex(cnt_tmp) && (cnt_tmp.rows==4)) {
+		if (cv.isContourConvex(cnt_tmp) 
+		    && (cnt_tmp.rows==4)
+		   && (maxAreaFound < cv.contourArea(cnt_tmp))
+		    && (cv.contourArea(cnt_tmp)< MAX_COUNTOUR_AREA)
+		   ) {
 		    poly.push_back(cnt_tmp);
 		 }
 		cv.drawContours(tmp, contours, i, new cv.Scalar(255,255,255), 1, cv.LINE_8, new cv.Mat(), 0);
