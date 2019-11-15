@@ -121,7 +121,7 @@ let edges = new cv.Mat(cameraView.videoHeight, cameraView.videoWidth, cv.CV_8UC3
 	let M = cv.getPerspectiveTransform(srcTri, dstTri);
 	*/
 	let color=null;
-	if (currentArea>MAX_CONTOUR_AREA) {
+	if (currentArea>maxAreaFound) {
 		color=new cv.Scalar(255,0,0)	
 	}
 	
