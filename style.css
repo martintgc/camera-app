@@ -55,8 +55,8 @@ html, body{
 #ui--capture {
 
   position: fixed;
-   height: 100%;
-    width: 100%;
+ opacity: 0.5;
+    width: 25%;
   object-fit: cover;
   z-index: 6;
 }
