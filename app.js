@@ -2,6 +2,7 @@
 var constraints = { video: { facingMode: { exact: "environment" } }, audio: false };
 var track = null;
 var pagecontour=null;
+var armed=false;
 
 // Define constants
 const cameraView = document.querySelector("#camera--view"),
@@ -43,16 +44,17 @@ function checkFrame() {
         blink.style.display = "none";
     }
     let MAX_CONTOUR_AREA = (cameraSensor.width - 10) * (cameraSensor.height - 10);
-let maxAreaFound = MAX_CONTOUR_AREA * 0.3;
-	console.log("area sensor: "+MAX_CONTOUR_AREA);
-	console.log("threshold area: "+maxAreaFound);
+let maxAreaFound = MAX_CONTOUR_AREA * 0.25;
+	let requiredArea= MAX_CONTOUR_AREA * 0.45;
+	let currentArea=0;
+
 	
     edge.width=cameraSensor.width;
     edge.height=cameraSensor.height;
-    edge.style.opacity=0.3;
+    edge.style.opacity=0.4;
     let src = new cv.Mat(cameraView.videoHeight, cameraView.videoWidth, cv.CV_8UC4);
     let dst = new cv.Mat(cameraView.videoHeight, cameraView.videoWidth, cv.CV_8UC1);
-    let tmp = new cv.Mat(cameraView.videoHeight, cameraView.videoWidth, cv.CV_8UC1);
+    //let tmp = new cv.Mat(cameraView.videoHeight, cameraView.videoWidth, cv.CV_8UC1);
 let edges = new cv.Mat(cameraView.videoHeight, cameraView.videoWidth, cv.CV_8UC3);
     cameraSensor.width = cameraView.videoWidth;
     cameraSensor.height = cameraView.videoHeight;
@@ -61,7 +63,7 @@ let edges = new cv.Mat(cameraView.videoHeight, cameraView.videoWidth, cv.CV_8UC3
 	rat = 800 / edge.height;
 	
     let dsize = new cv.Size(rat*edge.width, 800);
-	cv.resize(src, src, dsize, 0, 0, cv.INTER_AREA);
+	//cv.resize(src, src, dsize, 0, 0, cv.INTER_AREA);
 	
     cv.cvtColor(src, src, cv.COLOR_RGB2GRAY, 0);
     cv.bilateralFilter(src, dst, 9, 75, 75, cv.BORDER_DEFAULT);	
@@ -103,6 +105,7 @@ let edges = new cv.Mat(cameraView.videoHeight, cameraView.videoWidth, cv.CV_8UC3
 		    && (cv.contourArea(cnt_tmp)< MAX_CONTOUR_AREA)
 		   ) {
 			console.log("contarea:"+cv.contourArea(cnt_tmp));
+			currentArea=cv.contourArea(cnt_tmp);
 		    poly.push_back(cnt_tmp);
 			pagecontour=cnt_tmp;
 		 }
@@ -111,9 +114,23 @@ let edges = new cv.Mat(cameraView.videoHeight, cameraView.videoWidth, cv.CV_8UC3
 		
 		
 	}
+	/*
+	var targetPlane=[[0, 0],[0, spheight],[spwidth, spheight],[spwidth, 0]];
+	let srcTri = cv.matFromArray(4, 1, cv.CV_32FC2, [56, 65, 368, 52, 28, 387, 389, 390]);
+	let dstTri = cv.matFromArray(4, 1, cv.CV_32FC2, [0, 0, 300, 0, 0, 300, 300, 300]);
+	let M = cv.getPerspectiveTransform(srcTri, dstTri);
+	*/
+	let color=null;
+	if (currentArea>MAX_CONTOUR_AREA) {
+		color=new cv.Scalar(255,0,0)	
+	}
+	
+	if (currentArea>requiredArea) {
+		color=new cv.Scalar(0,255,0)	
+	}
 	
 	for (let j = 0; j < poly.size(); ++j) {
-		cv.drawContours(edges, poly, j, new cv.Scalar(255,0,0), 2, cv.LINE_8, new cv.Mat(), 0);
+		cv.drawContours(edges, poly, j, color, 2, cv.LINE_8, new cv.Mat(), 0);
 	}
 	
 	
@@ -134,6 +151,9 @@ let edges = new cv.Mat(cameraView.videoHeight, cameraView.videoWidth, cv.CV_8UC3
 
 // Take a picture when cameraTrigger is tapped
 cameraTrigger.onclick = function() {
+	armed=true;
+	
+	/*
     edge.width=cameraSensor.width;
     edge.height=cameraSensor.height;
     edge.style.opacity=0.2;
@@ -147,6 +167,7 @@ cameraTrigger.onclick = function() {
     cv.imshow("ui--edge", dst);
     edge.style.widht="100%";
     edge.style.height="100%";
+	*/
     /*
     cameraSensor.width = cameraView.videoWidth;
     cameraSensor.height = cameraView.videoHeight;
