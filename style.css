@@ -52,6 +52,14 @@ html, body{
   object-fit: cover;
   z-index: 4;
 }
+#ui--capture {
+
+  position: fixed;
+   height: 100%;
+    width: 100%;
+  object-fit: cover;
+  z-index: 6;
+}
 
 #ui--feed {
     object-fit: cover;
