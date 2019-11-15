@@ -41,8 +41,8 @@ function checkFrame() {
     } else {
         blink.style.display = "none";
     }
-    let MAX_COUNTOUR_AREA = (cameraSensor.width - 10) * (cameraSensor.height - 10);
-let maxAreaFound = MAX_COUNTOUR_AREA * 0.5;
+    let MAX_CONTOUR_AREA = (cameraSensor.width - 10) * (cameraSensor.height - 10);
+let maxAreaFound = MAX_CONTOUR_AREA * 0.5;
 	console.log("area sensor: "+MAX_CONTOUR_AREA);
 	console.log("threshold area: "+maxAreaFound);
 	
