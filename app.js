@@ -58,8 +58,11 @@ let edges = new cv.Mat(cameraView.videoHeight, cameraView.videoWidth, cv.CV_8UC3
     cameraSensor.height = cameraView.videoHeight;
     cameraSensor.getContext("2d").drawImage(cameraView, 0, 0);
     src.data.set(cameraSensor.getContext("2d").getImageData(0, 0, cameraView.videoWidth, cameraView.videoHeight).data);
-
-    
+	rat = 800 / edge.height;
+	
+    let dsize = new cv.Size(rat*edge.width, 800);
+	cv.resize(src, src, dsize, 0, 0, cv.INTER_AREA);
+	
     cv.cvtColor(src, src, cv.COLOR_RGB2GRAY, 0);
     cv.bilateralFilter(src, dst, 9, 75, 75, cv.BORDER_DEFAULT);	
     //cv.adaptiveThreshold(dst, 255, cv.ADAPTIVE_THRESH_GAUSSIAN_C, cv.THRESH_BINARY, 115, 4)		
@@ -70,7 +73,7 @@ let edges = new cv.Mat(cameraView.videoHeight, cameraView.videoWidth, cv.CV_8UC3
     cv.Canny(dst,dst, 200, 250, 3, false);
 	
 	//let tmp = cv.Mat.zeros(dst.cols, dst.rows, cv.CV_8UC1);
-	tmp=cv.Mat.zeros(cameraView.videoHeight, cameraView.videoWidth, cv.CV_8UC1);
+	//tmp=cv.Mat.zeros(cameraView.videoHeight, cameraView.videoWidth, cv.CV_8UC1);
 	edges=cv.Mat.zeros(cameraView.videoHeight, cameraView.videoWidth, cv.CV_8UC3);
 	
 	let contours = new cv.MatVector();
