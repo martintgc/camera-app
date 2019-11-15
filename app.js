@@ -64,9 +64,9 @@ let edges = new cv.Mat(cameraView.videoHeight, cameraView.videoWidth, cv.CV_8UC3
     cameraSensor.height = cameraView.videoHeight;
     cameraSensor.getContext("2d").drawImage(cameraView, 0, 0);
     src.data.set(cameraSensor.getContext("2d").getImageData(0, 0, cameraView.videoWidth, cameraView.videoHeight).data);
-	rat = 800 / edge.height;
+	//rat = 800 / edge.height;
 	
-    let dsize = new cv.Size(rat*edge.width, 800);
+    //let dsize = new cv.Size(rat*edge.width, 800);
 	//cv.resize(src, src, dsize, 0, 0, cv.INTER_AREA);
 	
     cv.cvtColor(src, src, cv.COLOR_RGB2GRAY, 0);
@@ -164,7 +164,8 @@ cameraTrigger.onclick = function() {
 	*/
 	//get the longest x and y axis of our contour (euclidian):
 	let rect = cv.boundingRect(cnt_tmp);
-	tmp=cv.Mat.zeros(cameraView.videoHeight, cameraView.videoWidth, cv.CV_8UC4);
+	let dsize = new cv.Size(src.rows, src.cols);
+	tmp=cv.Mat.zeros(src.rows, src.cols, cv.CV_8UC4);
 	//create the optimal rectangular plane
 	var targetPlane=[0,0,0,rect.height,rect.width,rect.height,rect.width,0];
 	
