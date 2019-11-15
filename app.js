@@ -161,14 +161,14 @@ let edges = new cv.Mat(cameraView.videoHeight, cameraView.videoWidth, cv.CV_8UC3
 
 }
 cameraTrigger.onclick = function() {
-	document.querySelector("#ui--capdiv").style.display=none;
+	document.querySelector("#ui--capdiv").style.display="none";
 }
 
 
 // Take a picture when cameraTrigger is tapped
 cameraTrigger.onclick = function() {
 	armed=true;
-	document.querySelector("#ui--capdiv").style.display=block;
+	document.querySelector("#ui--capdiv").style.display="block";
 	/*
 	//var targetPlane=[[0, 0],[0, spheight],[spwidth, spheight],[spwidth, 0]];
 	*/
