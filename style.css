@@ -44,6 +44,14 @@ html, body{
   z-index:3;
 }
 
+#ui--capdiv {
+  position: fixed;
+   height: 100%;
+    width: 100%;
+  object-fit: cover;
+  z-index: 6;
+}
+
 #ui--edge {
 
   position: fixed;
@@ -52,13 +60,14 @@ html, body{
   object-fit: cover;
   z-index: 4;
 }
+
 #ui--capture {
 
-  position: fixed;
- opacity: 0.5;
+  //position: fixed;
+ //opacity: 0.5;
     //width: 25%;
   //object-fit: cover;
-  z-index: 6;
+  //z-index: 7;
 }
 
 #ui--feed {
