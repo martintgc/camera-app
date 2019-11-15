@@ -18,8 +18,24 @@ html, body{
 }
 
 
+#ui--capdiv--hide {
+    width: 100px;
+    background-color: red;
+    color: white;
+    font-size: 16px;
+    border-radius: 30px;
+    border: none;
+    padding: 15px 20px;
+    text-align: center;
+    box-shadow: 0 5px 10px 0 rgba(0,0,0,0.2);
+    position: fixed;
+    top: 10px;
+  right: 10px;
+    //left: calc(50% - 100px);
+  z-index:12;
+}
 
-#camera--trigger, #ui--capdiv--hide{
+#camera--trigger {
     width: 200px;
     background-color: black;
     color: white;
