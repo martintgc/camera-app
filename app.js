@@ -5,6 +5,7 @@ var pagecontour=null;
 var armed=false;
 var src=null;
 var tmp=null;
+var cnt_tmp=null;
 
 // Define constants
 const cameraView = document.querySelector("#camera--view"),
@@ -84,7 +85,8 @@ let edges = new cv.Mat(cameraView.videoHeight, cameraView.videoWidth, cv.CV_8UC3
 	let contours = new cv.MatVector();
 	let hierarchy = new cv.Mat();
 	let poly = new cv.MatVector();
-	let cnt_tmp = new cv.Mat();
+	//let 
+	cnt_tmp = new cv.Mat();
 	cv.findContours(dst, contours, hierarchy, cv.RETR_CCOMP, cv.CHAIN_APPROX_SIMPLE);
 	/*
 	for (let i = 0; i < contours.size(); ++i) {
@@ -118,11 +120,7 @@ let edges = new cv.Mat(cameraView.videoHeight, cameraView.videoWidth, cv.CV_8UC3
 		
 	}
 	
-	/*
-	//var targetPlane=[[0, 0],[0, spheight],[spwidth, spheight],[spwidth, 0]];
-	*/
-	//get the longest x and y axis of our contour (euclidian):
-	let rect = cv.boundingRect(cnt_tmp);
+	
 	
 	
 	
@@ -161,7 +159,11 @@ let edges = new cv.Mat(cameraView.videoHeight, cameraView.videoWidth, cv.CV_8UC3
 // Take a picture when cameraTrigger is tapped
 cameraTrigger.onclick = function() {
 	armed=true;
-	
+	/*
+	//var targetPlane=[[0, 0],[0, spheight],[spwidth, spheight],[spwidth, 0]];
+	*/
+	//get the longest x and y axis of our contour (euclidian):
+	let rect = cv.boundingRect(cnt_tmp);
 	tmp=cv.Mat.zeros(cameraView.videoHeight, cameraView.videoWidth, cv.CV_8UC4);
 	//create the optimal rectangular plane
 	var targetPlane=[0,0,0,rect.height,rect.width,rect.height,rect.width,0];
