@@ -21,7 +21,7 @@ function cameraStart() {
         .then(function(stream) {
             track = stream.getTracks()[0];
             cameraView.srcObject = stream;
-            setTimeout(checkFrame, 500);
+            setTimeout(checkFrame, 2000);
             
         })
         .catch(function(error) {
@@ -162,7 +162,7 @@ let edges = new cv.Mat(cameraView.videoHeight, cameraView.videoWidth, cv.CV_8UC3
     edge.style.widht="100%";
     edge.style.height="100%";
 
-    setTimeout(checkFrame, 1000);  
+    setTimeout(checkFrame, 500);  
 }
 
 
