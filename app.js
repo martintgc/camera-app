@@ -47,7 +47,7 @@ function checkFrame() {
     edge.style.opacity=0.3;
     let src = new cv.Mat(cameraView.videoHeight, cameraView.videoWidth, cv.CV_8UC4);
     let dst = new cv.Mat(cameraView.videoHeight, cameraView.videoWidth, cv.CV_8UC1);
-    let tmp = new cv.Mat(cameraView.videoHeight, cameraView.videoWidth, cv.CV_8UC1);
+    let tmp = new cv.Mat(cameraView.videoHeight, cameraView.videoWidth, cv.CV_8UC3);
 	
     cameraSensor.width = cameraView.videoWidth;
     cameraSensor.height = cameraView.videoHeight;
