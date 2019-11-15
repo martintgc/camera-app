@@ -47,8 +47,8 @@ function checkFrame() {
     edge.style.opacity=0.3;
     let src = new cv.Mat(cameraView.videoHeight, cameraView.videoWidth, cv.CV_8UC4);
     let dst = new cv.Mat(cameraView.videoHeight, cameraView.videoWidth, cv.CV_8UC1);
-    let tmp = new cv.Mat(cameraView.videoHeight, cameraView.videoWidth, cv.CV_8UC3);
-	
+    let tmp = new cv.Mat(cameraView.videoHeight, cameraView.videoWidth, cv.CV_8UC1);
+let edges = new cv.Mat(cameraView.videoHeight, cameraView.videoWidth, cv.CV_8UC4);
     cameraSensor.width = cameraView.videoWidth;
     cameraSensor.height = cameraView.videoHeight;
     cameraSensor.getContext("2d").drawImage(cameraView, 0, 0);
@@ -66,6 +66,8 @@ function checkFrame() {
 	
 	//let tmp = cv.Mat.zeros(dst.cols, dst.rows, cv.CV_8UC1);
 	tmp=cv.Mat.zeros(cameraView.videoHeight, cameraView.videoWidth, cv.CV_8UC1);
+	edges=cv.Mat.zeros(cameraView.videoHeight, cameraView.videoWidth, cv.CV_8UC4);
+	
 	let contours = new cv.MatVector();
 	let hierarchy = new cv.Mat();
 	let poly = new cv.MatVector();
@@ -96,7 +98,7 @@ function checkFrame() {
 	}
 	
 	for (let j = 0; j < poly.size(); ++j) {
-		cv.drawContours(tmp, poly, j, new cv.Scalar(255,0,0), 2, cv.LINE_8, new cv.Mat(), 0);
+		cv.drawContours(edges, poly, j, new cv.Scalar(255,0,0), 2, cv.LINE_8, new cv.Mat(), 0);
 	}
 	
 	
@@ -106,7 +108,7 @@ function checkFrame() {
     //cv.Canny(src, dst, 50, 100, 3, false);
    
     
-    cv.imshow("ui--edge", tmp);
+    cv.imshow("ui--edge", edges);
     edge.style.widht="100%";
     edge.style.height="100%";
 
