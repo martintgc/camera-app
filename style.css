@@ -19,7 +19,7 @@ html, body{
 
 
 
-#camera--trigger{
+#camera--trigger, #ui--capdiv--hide{
     width: 200px;
     background-color: black;
     color: white;
