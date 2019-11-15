@@ -184,7 +184,7 @@ cameraTrigger.onclick = function() {
 	//M = cv2.getPerspectiveTransform(sPoints, tPoints) 		
 	//newImage = cv2.warpPerspective(image, M, (int(width), int(height)))
 	cv.imshow("ui--capture", tmp);
-	
+	tmp.delete();
 	/*
     edge.width=cameraSensor.width;
     edge.height=cameraSensor.height;
