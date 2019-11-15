@@ -136,7 +136,7 @@ let edges = new cv.Mat(cameraView.videoHeight, cameraView.videoWidth, cv.CV_8UC3
 	
 	//M = cv2.getPerspectiveTransform(sPoints, tPoints) 		
 	//newImage = cv2.warpPerspective(image, M, (int(width), int(height)))
-	cv.imshow("ui--edge", tmp);
+	cv.imshow("ui--captured", tmp);
 	
 	let color=null;
 	if (currentArea>maxAreaFound) {
