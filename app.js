@@ -79,7 +79,7 @@ let edges = new cv.Mat(cameraView.videoHeight, cameraView.videoWidth, cv.CV_8UC3
     cv.Canny(dst,dst, 200, 250, 3, false);
 	
 	//let tmp = cv.Mat.zeros(dst.cols, dst.rows, cv.CV_8UC1);
-	tmp=cv.Mat.zeros(cameraView.videoHeight, cameraView.videoWidth, cv.CV_8UC4);
+	//tmp=cv.Mat.zeros(cameraView.videoHeight, cameraView.videoWidth, cv.CV_8UC4);
 	edges=cv.Mat.zeros(cameraView.videoHeight, cameraView.videoWidth, cv.CV_8UC3);
 	
 	let contours = new cv.MatVector();
@@ -150,8 +150,14 @@ let edges = new cv.Mat(cameraView.videoHeight, cameraView.videoWidth, cv.CV_8UC3
     cv.imshow("ui--edge", edges);
     edge.style.widht="100%";
     edge.style.height="100%";
-
+	dst.delete();
+	edges.delete();
+	
+	
     setTimeout(checkFrame, 500);  
+	
+	
+
 }
 
 
