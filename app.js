@@ -43,6 +43,8 @@ function checkFrame() {
     }
     let MAX_COUNTOUR_AREA = (cameraSensor.width - 10) * (cameraSensor.height - 10);
 let maxAreaFound = MAX_COUNTOUR_AREA * 0.5;
+	console.log("area sensor: "+MAX_CONTOUR_AREA);
+	console.log("threshold area: "+maxAreaFound);
 	
     edge.width=cameraSensor.width;
     edge.height=cameraSensor.height;
@@ -96,6 +98,7 @@ let edges = new cv.Mat(cameraView.videoHeight, cameraView.videoWidth, cv.CV_8UC3
 		   //&& (maxAreaFound < cv.contourArea(cnt_tmp))
 		    //&& (cv.contourArea(cnt_tmp)< MAX_COUNTOUR_AREA)
 		   ) {
+			console.log("contarea:"+cv.contourArea(cnt_tmp));
 		    poly.push_back(cnt_tmp);
 		 }
 		cv.drawContours(tmp, contours, i, new cv.Scalar(255,255,255), 1, cv.LINE_8, new cv.Mat(), 0);
