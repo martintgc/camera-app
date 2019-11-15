@@ -3,6 +3,8 @@ var constraints = { video: { facingMode: { exact: "environment" } }, audio: fals
 var track = null;
 var pagecontour=null;
 var armed=false;
+var src=null;
+var tmp=null;
 
 // Define constants
 const cameraView = document.querySelector("#camera--view"),
@@ -52,7 +54,8 @@ let maxAreaFound = MAX_CONTOUR_AREA * 0.25;
     edge.width=cameraSensor.width;
     edge.height=cameraSensor.height;
     edge.style.opacity=0.4;
-    let src = new cv.Mat(cameraView.videoHeight, cameraView.videoWidth, cv.CV_8UC4);
+    //let
+    src = new cv.Mat(cameraView.videoHeight, cameraView.videoWidth, cv.CV_8UC4);
     let dst = new cv.Mat(cameraView.videoHeight, cameraView.videoWidth, cv.CV_8UC1);
     //let tmp = new cv.Mat(cameraView.videoHeight, cameraView.videoWidth, cv.CV_8UC1);
 let edges = new cv.Mat(cameraView.videoHeight, cameraView.videoWidth, cv.CV_8UC3);
@@ -124,18 +127,7 @@ let edges = new cv.Mat(cameraView.videoHeight, cameraView.videoWidth, cv.CV_8UC3
 	
 	
 	
-	//create the optimal rectangular plane
-	var targetPlane=[0,0,0,rect.height,rect.width,rect.height,rect.width,0];
 	
-	let srcTri = cv.matFromArray(4, 1, cv.CV_32FC2, targetPlane);
-	let dstTri = cv.matFromArray(4, 1, cv.CV_32FC2, targetPlane);
-	let M = cv.getPerspectiveTransform(srcTri, dstTri);
-	cv.warpPerspective(src, tmp, M, dsize, cv.INTER_LINEAR, cv.BORDER_CONSTANT, new cv.Scalar());
-	
-	
-	//M = cv2.getPerspectiveTransform(sPoints, tPoints) 		
-	//newImage = cv2.warpPerspective(image, M, (int(width), int(height)))
-	cv.imshow("ui--capture", tmp);
 	
 	let color=null;
 	if (currentArea>maxAreaFound) {
@@ -169,6 +161,20 @@ let edges = new cv.Mat(cameraView.videoHeight, cameraView.videoWidth, cv.CV_8UC3
 // Take a picture when cameraTrigger is tapped
 cameraTrigger.onclick = function() {
 	armed=true;
+	
+	tmp=cv.Mat.zeros(cameraView.videoHeight, cameraView.videoWidth, cv.CV_8UC4);
+	//create the optimal rectangular plane
+	var targetPlane=[0,0,0,rect.height,rect.width,rect.height,rect.width,0];
+	
+	let srcTri = cv.matFromArray(4, 1, cv.CV_32FC2, targetPlane);
+	let dstTri = cv.matFromArray(4, 1, cv.CV_32FC2, targetPlane);
+	let M = cv.getPerspectiveTransform(srcTri, dstTri);
+	cv.warpPerspective(src, tmp, M, dsize, cv.INTER_LINEAR, cv.BORDER_CONSTANT, new cv.Scalar());
+	
+	
+	//M = cv2.getPerspectiveTransform(sPoints, tPoints) 		
+	//newImage = cv2.warpPerspective(image, M, (int(width), int(height)))
+	cv.imshow("ui--capture", tmp);
 	
 	/*
     edge.width=cameraSensor.width;
