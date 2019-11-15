@@ -95,8 +95,8 @@ let edges = new cv.Mat(cameraView.videoHeight, cameraView.videoWidth, cv.CV_8UC3
 		//console.log(cnt_tmp.size());
 		if (cv.isContourConvex(cnt_tmp) 
 		    && (cnt_tmp.rows==4)
-		   //&& (maxAreaFound < cv.contourArea(cnt_tmp))
-		    //&& (cv.contourArea(cnt_tmp)< MAX_COUNTOUR_AREA)
+		   && (maxAreaFound < cv.contourArea(cnt_tmp))
+		    && (cv.contourArea(cnt_tmp)< MAX_COUNTOUR_AREA)
 		   ) {
 			console.log("contarea:"+cv.contourArea(cnt_tmp));
 		    poly.push_back(cnt_tmp);
