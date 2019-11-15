@@ -84,8 +84,9 @@ html, body{
   position: fixed;
  //opacity: 0.5;
     //width: 25%;
-  object-fit: cover;
+  object-fit: contain;
   //z-index: 7;
+  //left: calc(50% - 100px);
    border-style: solid;
   border-width: 5px;
   border-color:black;
