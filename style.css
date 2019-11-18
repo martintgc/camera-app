@@ -79,8 +79,8 @@ html, body{
 }
 
 #ui--capture {
-  width:90%;
-  height:100%;
+  //width:90%;
+  //height:100%;
   position: fixed;
  //opacity: 0.5;
     //width: 25%;
@@ -93,7 +93,7 @@ html, body{
 }
 
 #ui--feed {
-    object-fit: cover;
+  object-fit: cover;
   position: fixed;
   object-fit: cover;
   z-index: 5;
