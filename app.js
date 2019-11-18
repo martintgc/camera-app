@@ -108,11 +108,10 @@ let edges = new cv.Mat(cameraView.videoHeight, cameraView.videoWidth, cv.CV_8UC3
 		   && (cv.contourArea(cnt_tmp)< MAX_CONTOUR_AREA)
 		   ) {
 			good_frame=src.clone();
-			
-			console.log("contarea:"+cv.contourArea(cnt_tmp));
 			currentArea=cv.contourArea(cnt_tmp);
 		    	poly.push_back(cnt_tmp);
 			pagecontour=cnt_tmp.clone();
+			makeTheCut();
 		 }
 	
 	}
@@ -143,9 +142,31 @@ let edges = new cv.Mat(cameraView.videoHeight, cameraView.videoWidth, cv.CV_8UC3
 
 }
 
+function makeTheCut() {
+	document.querySelector("#ui--capdiv").style.display="block";
+	
+		
+	let rect = cv.boundingRect(pagecontour);
+		console.log(rect.height +' '+ rect.width);
+	let dsize = new cv.Size(good_frame.rows, good_frame.cols);
+	tmp=cv.Mat.zeros(good_frame.rows, good_frame.cols, cv.CV_8UC4);
+	
+	var targetPlane=[0,0,0,rect.height,rect.width,rect.height,rect.width,0];
+	
+	let srcTri = cv.matFromArray(4, 1, cv.CV_32FC2, targetPlane);
+	let dstTri = cv.matFromArray(4, 1, cv.CV_32FC2, targetPlane);
+	let M = cv.getPerspectiveTransform(srcTri, dstTri);
+	cv.warpPerspective(good_frame, tmp, M, dsize, cv.INTER_LINEAR, cv.BORDER_CONSTANT, new cv.Scalar());
+
+	cv.imshow("ui--capture", tmp);
+	tmp.delete();
+	
+}
+
 dismissTrigger.onclick = function() {
 	document.querySelector("#ui--capdiv").style.display="none";
 }
+
 
 
 // Take a picture when cameraTrigger is tapped
