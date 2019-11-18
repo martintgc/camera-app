@@ -168,7 +168,7 @@ dismissTrigger.onclick = function() {
 // Take a picture when cameraTrigger is tapped
 cameraTrigger.onclick = function() {
 	armed=true;
-	if (cnt_tmp !== null && cnt_tmp !== undefined && cnt_tmp.size()>0) {
+	//if (cnt_tmp !== null && cnt_tmp !== undefined && cnt_tmp.size()>0) {
 	document.querySelector("#ui--capdiv").style.display="block";
 	/*
 	//var targetPlane=[[0, 0],[0, spheight],[spwidth, spheight],[spwidth, 0]];
@@ -194,7 +194,7 @@ cameraTrigger.onclick = function() {
 	//newImage = cv2.warpPerspective(image, M, (int(width), int(height)))
 	cv.imshow("ui--capture", tmp);
 	tmp.delete();
-	}
+	//}
 	/*
     edge.width=cameraSensor.width;
     edge.height=cameraSensor.height;
