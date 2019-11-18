@@ -7,6 +7,7 @@ var src=null;
 var tmp=null;
 var good_frame=null;
 var cnt_tmp=null;
+var poly=null;
 
 // Define constants
 const cameraView = document.querySelector("#camera--view"),
@@ -40,6 +41,7 @@ function cameraStart() {
 
 function initGlobals() {
 	good_frame=new cv.Mat(cameraView.videoHeight, cameraView.videoWidth, cv.CV_8UC4);
+	poly = new cv.MatVector();
 	console.log("Globals initialized");
 }
 
@@ -90,7 +92,7 @@ let edges = new cv.Mat(cameraView.videoHeight, cameraView.videoWidth, cv.CV_8UC3
 	
 	let contours = new cv.MatVector();
 	let hierarchy = new cv.Mat();
-	let poly = new cv.MatVector();
+	//let poly = new cv.MatVector();
 	//let 
 	cnt_tmp = new cv.Mat();
 	cv.findContours(dst, contours, hierarchy, cv.RETR_CCOMP, cv.CHAIN_APPROX_SIMPLE);
@@ -115,6 +117,8 @@ let edges = new cv.Mat(cameraView.videoHeight, cameraView.videoWidth, cv.CV_8UC3
 		   && (maxAreaFound < cv.contourArea(cnt_tmp))
 		    && (cv.contourArea(cnt_tmp)< MAX_CONTOUR_AREA)
 		   ) {
+			good_frame=src.clone();
+			cv.imshow("ui--capture", good_frame);
 			console.log("contarea:"+cv.contourArea(cnt_tmp));
 			currentArea=cv.contourArea(cnt_tmp);
 		    	poly.push_back(cnt_tmp);
