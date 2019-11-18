@@ -174,7 +174,7 @@ cameraTrigger.onclick = function() {
 cv.imshow("ui--capture", good_frame);
 	//cv.imshow("ui--capture", tmp);
 	tmp.delete();
-	*/
+	
 	
 	/*
     edge.width=cameraSensor.width;
