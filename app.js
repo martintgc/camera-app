@@ -53,8 +53,8 @@ function checkFrame() {
     } else {
         blink.style.display = "none";
     }
-    let MAX_CONTOUR_AREA = (cameraSensor.width - 10) * (cameraSensor.height - 10);
-let maxAreaFound = MAX_CONTOUR_AREA * 0.2;
+    	let MAX_CONTOUR_AREA = (cameraSensor.width - 10) * (cameraSensor.height - 10);
+	let maxAreaFound = MAX_CONTOUR_AREA * 0.2;
 	let requiredArea= MAX_CONTOUR_AREA * 0.45;
 	let currentArea=0;
 
@@ -90,7 +90,7 @@ let edges = new cv.Mat(cameraView.videoHeight, cameraView.videoWidth, cv.CV_8UC3
 	let contours = new cv.MatVector();
 	let hierarchy = new cv.Mat();
 	let poly = new cv.MatVector();
-
+	let color=null;
 	cnt_tmp = new cv.Mat();
 	cv.findContours(dst, contours, hierarchy, cv.RETR_CCOMP, cv.CHAIN_APPROX_SIMPLE);
 
@@ -102,32 +102,49 @@ let edges = new cv.Mat(cameraView.videoHeight, cameraView.videoWidth, cv.CV_8UC3
 		perimeter=cv.arcLength(cnt, true);
 		cv.approxPolyDP(cnt, cnt_tmp, 0.03 * perimeter, true);
 
-		if (cv.isContourConvex(cnt_tmp) 
-		    && (cnt_tmp.rows==4)
-		   && (maxAreaFound < cv.contourArea(cnt_tmp))
+		if (cv.isContourConvex(cnt_tmp) && (cnt_tmp.rows==4) && (maxAreaFound < cv.contourArea(cnt_tmp)) 
+		   && (cv.contourArea(cnt_tmp)< MAX_CONTOUR_AREA) 
+		   && (cv.contourArea(cnt_tmp)<requiredArea) ) {
+			// we found a shape and we seem close enough to push the contour and make it red
+			poly.push_back(cnt_tmp);
+			color=new cv.Scalar(255,0,0);
+		}
+		
+		if (cv.isContourConvex(cnt_tmp) && (cnt_tmp.rows==4) && (maxAreaFound < cv.contourArea(cnt_tmp))
 		   && (cv.contourArea(cnt_tmp)< MAX_CONTOUR_AREA)
+		   && (cv.contourArea(cnt_tmp)>requiredArea) ) {
+			pagecontour=cnt_tmp.clone();
+			poly.push_back(cnt_tmp);
+			color=new cv.Scalar(0,255,0);
+			good_frame=src.clone();
+			makeTheCut();
+		}
+		  /*
 		   ) {
 			good_frame=src.clone();
 			currentArea=cv.contourArea(cnt_tmp);
 		    	poly.push_back(cnt_tmp);
 			pagecontour=cnt_tmp.clone();
+			
 			makeTheCut();
-		 }
-	
+		 } else {
+			
+		 }*/
+		for (let j = 0; j < poly.size(); ++j) {
+			cv.drawContours(edges, poly, j, color, 2, cv.LINE_8, new cv.Mat(), 0);
+		}
 	}
-
-	let color=null;
+/*
+	
 	if (currentArea>maxAreaFound) {
-		color=new cv.Scalar(255,0,0)	
+			
 	}
 	
 	if (currentArea>requiredArea) {
-		color=new cv.Scalar(0,255,0)	
+			
 	}
+	*/
 	
-	for (let j = 0; j < poly.size(); ++j) {
-		cv.drawContours(edges, poly, j, color, 2, cv.LINE_8, new cv.Mat(), 0);
-	}
 
     cv.imshow("ui--edge", edges);
     edge.style.widht="100%";
