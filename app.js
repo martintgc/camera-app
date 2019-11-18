@@ -54,14 +54,14 @@ function checkFrame() {
         blink.style.display = "none";
     }
     let MAX_CONTOUR_AREA = (cameraSensor.width - 10) * (cameraSensor.height - 10);
-let maxAreaFound = MAX_CONTOUR_AREA * 0.25;
+let maxAreaFound = MAX_CONTOUR_AREA * 0.2;
 	let requiredArea= MAX_CONTOUR_AREA * 0.45;
 	let currentArea=0;
 
 	
     edge.width=cameraSensor.width;
     edge.height=cameraSensor.height;
-    edge.style.opacity=0.4;
+    edge.style.opacity=0.2;
     //let
     src = new cv.Mat(cameraView.videoHeight, cameraView.videoWidth, cv.CV_8UC4);
     let dst = new cv.Mat(cameraView.videoHeight, cameraView.videoWidth, cv.CV_8UC1);
