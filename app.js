@@ -118,7 +118,7 @@ let edges = new cv.Mat(cameraView.videoHeight, cameraView.videoWidth, cv.CV_8UC3
 		    && (cv.contourArea(cnt_tmp)< MAX_CONTOUR_AREA)
 		   ) {
 			good_frame=src.clone();
-			cv.imshow("ui--capture", good_frame);
+			//cv.imshow("ui--capture", good_frame);
 			console.log("contarea:"+cv.contourArea(cnt_tmp));
 			currentArea=cv.contourArea(cnt_tmp);
 		    	poly.push_back(cnt_tmp);
@@ -178,15 +178,19 @@ dismissTrigger.onclick = function() {
 // Take a picture when cameraTrigger is tapped
 cameraTrigger.onclick = function() {
 	armed=true;
-	//if (cnt_tmp !== null && cnt_tmp !== undefined && cnt_tmp.size()>0) {
+	if (pagecontour !== null && pagecontour !== undefined && pagecontour.size()>0 &&
+	   good_frame !== null && good_frame !== undefined
+	   
+	   ) {
 	document.querySelector("#ui--capdiv").style.display="block";
 	/*
 	//var targetPlane=[[0, 0],[0, spheight],[spwidth, spheight],[spwidth, 0]];
 	*/
 	//get the longest x and y axis of our contour (euclidian):
-	let rect = cv.boundingRect(poly.get(0));
-	let dsize = new cv.Size(src.rows, src.cols);
-	tmp=cv.Mat.zeros(src.rows, src.cols, cv.CV_8UC4);
+	let rect = cv.boundingRect(pagecontour);
+		console.log(rect.height +' '+ rect.width);
+	let dsize = new cv.Size(good_frame.rows, good_frame.cols);
+	tmp=cv.Mat.zeros(good_frame.rows, good_frame.cols, cv.CV_8UC4);
 	//create the optimal rectangular plane
 	
 	
@@ -196,7 +200,7 @@ cameraTrigger.onclick = function() {
 	let srcTri = cv.matFromArray(4, 1, cv.CV_32FC2, targetPlane);
 	let dstTri = cv.matFromArray(4, 1, cv.CV_32FC2, targetPlane);
 	let M = cv.getPerspectiveTransform(srcTri, dstTri);
-	cv.warpPerspective(src, tmp, M, dsize, cv.INTER_LINEAR, cv.BORDER_CONSTANT, new cv.Scalar());
+	cv.warpPerspective(good_frame, tmp, M, dsize, cv.INTER_LINEAR, cv.BORDER_CONSTANT, new cv.Scalar());
 	
 	
 	//M = cv2.getPerspectiveTransform(sPoints, tPoints) 		
