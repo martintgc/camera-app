@@ -2,7 +2,6 @@
 var constraints = { video: { facingMode: { exact: "environment" } }, audio: false };
 var track = null;
 var pagecontour=null;
-var armed=false;
 var src=null;
 var tmp=null;
 var good_frame=null;
@@ -41,7 +40,7 @@ function cameraStart() {
 
 function initGlobals() {
 	good_frame=new cv.Mat(cameraView.videoHeight, cameraView.videoWidth, cv.CV_8UC4);
-	
+	pagecontour=new cv.Mat();
 	console.log("Globals initialized");
 }
 
@@ -86,8 +85,6 @@ let edges = new cv.Mat(cameraView.videoHeight, cameraView.videoWidth, cv.CV_8UC3
     cv.copyMakeBorder(dst, dst, 5, 5, 5, 5, cv.BORDER_CONSTANT, value=[0, 0, 0, 0]);	
     cv.Canny(dst,dst, 200, 250, 3, false);
 	
-	//let tmp = cv.Mat.zeros(dst.cols, dst.rows, cv.CV_8UC1);
-	//tmp=cv.Mat.zeros(cameraView.videoHeight, cameraView.videoWidth, cv.CV_8UC4);
 	edges=cv.Mat.zeros(cameraView.videoHeight, cameraView.videoWidth, cv.CV_8UC3);
 	
 	let contours = new cv.MatVector();
@@ -96,13 +93,7 @@ let edges = new cv.Mat(cameraView.videoHeight, cameraView.videoWidth, cv.CV_8UC3
 
 	cnt_tmp = new cv.Mat();
 	cv.findContours(dst, contours, hierarchy, cv.RETR_CCOMP, cv.CHAIN_APPROX_SIMPLE);
-	/*
-	for (let i = 0; i < contours.size(); ++i) {
-    		let color = new cv.Scalar(Math.round(Math.random() * 255), Math.round(Math.random() * 255),
-                              Math.round(Math.random() * 255));
-    		cv.drawContours(tmp, contours, i, color, 1, cv.LINE_8, hierarchy, 0);
-	}
-	*/
+
 	
 	for (let i = 0; i < contours.size(); ++i) {
 		
@@ -110,33 +101,22 @@ let edges = new cv.Mat(cameraView.videoHeight, cameraView.videoWidth, cv.CV_8UC3
 		
 		perimeter=cv.arcLength(cnt, true);
 		cv.approxPolyDP(cnt, cnt_tmp, 0.03 * perimeter, true);
-		//if (cnt_tmp.size==4) {
-		//console.log(cnt_tmp.size());
+
 		if (cv.isContourConvex(cnt_tmp) 
 		    && (cnt_tmp.rows==4)
 		   && (maxAreaFound < cv.contourArea(cnt_tmp))
 		   && (cv.contourArea(cnt_tmp)< MAX_CONTOUR_AREA)
 		   ) {
 			good_frame=src.clone();
-			//cv.imshow("ui--capture", good_frame);
+			
 			console.log("contarea:"+cv.contourArea(cnt_tmp));
 			currentArea=cv.contourArea(cnt_tmp);
 		    	poly.push_back(cnt_tmp);
-			pagecontour=cnt_tmp;
+			pagecontour=cnt_tmp.clone();
 		 }
-		//cv.drawContours(tmp, contours, i, new cv.Scalar(255,255,255), 1, cv.LINE_8, new cv.Mat(), 0);
 	
-		
-		
 	}
-	
-	
-	
-	
-	
-	
-	
-	
+
 	let color=null;
 	if (currentArea>maxAreaFound) {
 		color=new cv.Scalar(255,0,0)	
@@ -149,14 +129,7 @@ let edges = new cv.Mat(cameraView.videoHeight, cameraView.videoWidth, cv.CV_8UC3
 	for (let j = 0; j < poly.size(); ++j) {
 		cv.drawContours(edges, poly, j, color, 2, cv.LINE_8, new cv.Mat(), 0);
 	}
-	
-	
-	
-	
-	
-    //cv.Canny(src, dst, 50, 100, 3, false);
-   
-    
+
     cv.imshow("ui--edge", edges);
     edge.style.widht="100%";
     edge.style.height="100%";
@@ -177,23 +150,20 @@ dismissTrigger.onclick = function() {
 
 // Take a picture when cameraTrigger is tapped
 cameraTrigger.onclick = function() {
-	armed=true;
+
 	if (pagecontour !== null && pagecontour !== undefined && pagecontour.size()>0 &&
 	   good_frame !== null && good_frame !== undefined
 	   
 	   ) {
+		
+		
 	document.querySelector("#ui--capdiv").style.display="block";
-	/*
-	//var targetPlane=[[0, 0],[0, spheight],[spwidth, spheight],[spwidth, 0]];
-	*/
-	//get the longest x and y axis of our contour (euclidian):
+	cv.imshow("ui--capture", good_frame);
+	/*	
 	let rect = cv.boundingRect(pagecontour);
 		console.log(rect.height +' '+ rect.width);
 	let dsize = new cv.Size(good_frame.rows, good_frame.cols);
 	tmp=cv.Mat.zeros(good_frame.rows, good_frame.cols, cv.CV_8UC4);
-	//create the optimal rectangular plane
-	
-	
 	
 	var targetPlane=[0,0,0,rect.height,rect.width,rect.height,rect.width,0];
 	
@@ -201,12 +171,10 @@ cameraTrigger.onclick = function() {
 	let dstTri = cv.matFromArray(4, 1, cv.CV_32FC2, targetPlane);
 	let M = cv.getPerspectiveTransform(srcTri, dstTri);
 	cv.warpPerspective(good_frame, tmp, M, dsize, cv.INTER_LINEAR, cv.BORDER_CONSTANT, new cv.Scalar());
-	
-	
-	//M = cv2.getPerspectiveTransform(sPoints, tPoints) 		
-	//newImage = cv2.warpPerspective(image, M, (int(width), int(height)))
+
 	cv.imshow("ui--capture", tmp);
 	tmp.delete();
+	*/
 	}
 	/*
     edge.width=cameraSensor.width;
@@ -236,7 +204,7 @@ cameraTrigger.onclick = function() {
 
 // Start the video stream when the window loads
 window.addEventListener("load", cameraStart, false);
-//window.addEventListener("load", checkFrame, false);
+
 
 // Install ServiceWorker
 if ('serviceWorker' in navigator) {
