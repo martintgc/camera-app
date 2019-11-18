@@ -41,7 +41,7 @@ function cameraStart() {
 
 function initGlobals() {
 	good_frame=new cv.Mat(cameraView.videoHeight, cameraView.videoWidth, cv.CV_8UC4);
-	poly = new cv.MatVector();
+	
 	console.log("Globals initialized");
 }
 
@@ -92,8 +92,8 @@ let edges = new cv.Mat(cameraView.videoHeight, cameraView.videoWidth, cv.CV_8UC3
 	
 	let contours = new cv.MatVector();
 	let hierarchy = new cv.Mat();
-	//let poly = new cv.MatVector();
-	//let 
+	let poly = new cv.MatVector();
+
 	cnt_tmp = new cv.Mat();
 	cv.findContours(dst, contours, hierarchy, cv.RETR_CCOMP, cv.CHAIN_APPROX_SIMPLE);
 	/*
@@ -169,6 +169,7 @@ let edges = new cv.Mat(cameraView.videoHeight, cameraView.videoWidth, cv.CV_8UC3
 	
 
 }
+
 dismissTrigger.onclick = function() {
 	document.querySelector("#ui--capdiv").style.display="none";
 }
@@ -188,8 +189,7 @@ cameraTrigger.onclick = function() {
 	tmp=cv.Mat.zeros(src.rows, src.cols, cv.CV_8UC4);
 	//create the optimal rectangular plane
 	
-	var sourcePlane = Array.prototype.concat.apply([], cnt_tmp);
-		console.log(sourcePlane);
+	
 	
 	var targetPlane=[0,0,0,rect.height,rect.width,rect.height,rect.width,0];
 	
