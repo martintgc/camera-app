@@ -184,7 +184,7 @@ cameraTrigger.onclick = function() {
 	
 	var targetPlane=[0,0,0,rect.height,rect.width,rect.height,rect.width,0];
 	
-	let srcTri = cv.matFromArray(4, 1, cv.CV_32FC2, sourcePlane);
+	let srcTri = cv.matFromArray(4, 1, cv.CV_32FC2, targetPlane);
 	let dstTri = cv.matFromArray(4, 1, cv.CV_32FC2, targetPlane);
 	let M = cv.getPerspectiveTransform(srcTri, dstTri);
 	cv.warpPerspective(src, tmp, M, dsize, cv.INTER_LINEAR, cv.BORDER_CONSTANT, new cv.Scalar());
