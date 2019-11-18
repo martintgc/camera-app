@@ -179,7 +179,8 @@ cameraTrigger.onclick = function() {
 	tmp=cv.Mat.zeros(src.rows, src.cols, cv.CV_8UC4);
 	//create the optimal rectangular plane
 	
-	//var sourcePlane = Array.prototype.concat.apply([], cnt_tmp);
+	var sourcePlane = Array.prototype.concat.apply([], cnt_tmp);
+		console.log(sourcePlane);
 	
 	var targetPlane=[0,0,0,rect.height,rect.width,rect.height,rect.width,0];
 	
