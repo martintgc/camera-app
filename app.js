@@ -150,16 +150,16 @@ dismissTrigger.onclick = function() {
 
 // Take a picture when cameraTrigger is tapped
 cameraTrigger.onclick = function() {
-
+/*
 	if (pagecontour !== null && pagecontour !== undefined && pagecontour.size()>0 &&
 	   good_frame !== null && good_frame !== undefined
 	   
 	   ) {
-		
+	*/	
 		
 	document.querySelector("#ui--capdiv").style.display="block";
-	cv.imshow("ui--capture", good_frame);
-	/*	
+	
+		
 	let rect = cv.boundingRect(pagecontour);
 		console.log(rect.height +' '+ rect.width);
 	let dsize = new cv.Size(good_frame.rows, good_frame.cols);
@@ -171,11 +171,11 @@ cameraTrigger.onclick = function() {
 	let dstTri = cv.matFromArray(4, 1, cv.CV_32FC2, targetPlane);
 	let M = cv.getPerspectiveTransform(srcTri, dstTri);
 	cv.warpPerspective(good_frame, tmp, M, dsize, cv.INTER_LINEAR, cv.BORDER_CONSTANT, new cv.Scalar());
-
-	cv.imshow("ui--capture", tmp);
+cv.imshow("ui--capture", good_frame);
+	//cv.imshow("ui--capture", tmp);
 	tmp.delete();
 	*/
-	}
+	
 	/*
     edge.width=cameraSensor.width;
     edge.height=cameraSensor.height;
