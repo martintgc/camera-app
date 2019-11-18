@@ -168,6 +168,7 @@ dismissTrigger.onclick = function() {
 // Take a picture when cameraTrigger is tapped
 cameraTrigger.onclick = function() {
 	armed=true;
+	if (cnt_tmp !== null && cnt_tmp !== undefined) {
 	document.querySelector("#ui--capdiv").style.display="block";
 	/*
 	//var targetPlane=[[0, 0],[0, spheight],[spwidth, spheight],[spwidth, 0]];
@@ -178,8 +179,8 @@ cameraTrigger.onclick = function() {
 	tmp=cv.Mat.zeros(src.rows, src.cols, cv.CV_8UC4);
 	//create the optimal rectangular plane
 	
-	var sourcePlane = Array.prototype.concat.apply([], cnt_tmp);
-	alert(cnt_tmp);
+	//var sourcePlane = Array.prototype.concat.apply([], cnt_tmp);
+	
 	var targetPlane=[0,0,0,rect.height,rect.width,rect.height,rect.width,0];
 	
 	let srcTri = cv.matFromArray(4, 1, cv.CV_32FC2, sourcePlane);
@@ -192,6 +193,7 @@ cameraTrigger.onclick = function() {
 	//newImage = cv2.warpPerspective(image, M, (int(width), int(height)))
 	cv.imshow("ui--capture", tmp);
 	tmp.delete();
+	}
 	/*
     edge.width=cameraSensor.width;
     edge.height=cameraSensor.height;
