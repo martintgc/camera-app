@@ -114,8 +114,8 @@ let edges = new cv.Mat(cameraView.videoHeight, cameraView.videoWidth, cv.CV_8UC3
 		//console.log(cnt_tmp.size());
 		if (cv.isContourConvex(cnt_tmp) 
 		    && (cnt_tmp.rows==4)
-		   //&& (maxAreaFound < cv.contourArea(cnt_tmp))
-		   // && (cv.contourArea(cnt_tmp)< MAX_CONTOUR_AREA)
+		   && (maxAreaFound < cv.contourArea(cnt_tmp))
+		   && (cv.contourArea(cnt_tmp)< MAX_CONTOUR_AREA)
 		   ) {
 			good_frame=src.clone();
 			//cv.imshow("ui--capture", good_frame);
