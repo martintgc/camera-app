@@ -179,7 +179,7 @@ cameraTrigger.onclick = function() {
 	//create the optimal rectangular plane
 	
 	var sourcePlane = Array.prototype.concat.apply([], cnt_tmp);
-	console.log(sourcePlane);
+	console.log(cnt_tmp);
 	var targetPlane=[0,0,0,rect.height,rect.width,rect.height,rect.width,0];
 	
 	let srcTri = cv.matFromArray(4, 1, cv.CV_32FC2, sourcePlane);
