@@ -168,7 +168,7 @@ dismissTrigger.onclick = function() {
 // Take a picture when cameraTrigger is tapped
 cameraTrigger.onclick = function() {
 	armed=true;
-	if (cnt_tmp !== null && cnt_tmp !== undefined) {
+	if (cnt_tmp !== null && cnt_tmp !== undefined && cnt_tmp.size()>0) {
 	document.querySelector("#ui--capdiv").style.display="block";
 	/*
 	//var targetPlane=[[0, 0],[0, spheight],[spwidth, spheight],[spwidth, 0]];
