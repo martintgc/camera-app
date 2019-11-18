@@ -5,6 +5,7 @@ var pagecontour=null;
 var armed=false;
 var src=null;
 var tmp=null;
+var good_frame=null;
 var cnt_tmp=null;
 
 // Define constants
@@ -26,7 +27,7 @@ function cameraStart() {
             track = stream.getTracks()[0];
             cameraView.srcObject = stream;
             setTimeout(checkFrame, 2000);
-            
+            initGlobals();
         })
         .catch(function(error) {
             console.error("Oops. Something is broken.", error);
@@ -37,6 +38,10 @@ function cameraStart() {
 
 
 
+function initGlobals() {
+	good_frame=new cv.Mat(cameraView.videoHeight, cameraView.videoWidth, cv.CV_8UC4);
+	console.log("Globals initialized");
+}
 
 
 function checkFrame() {
@@ -112,7 +117,7 @@ let edges = new cv.Mat(cameraView.videoHeight, cameraView.videoWidth, cv.CV_8UC3
 		   ) {
 			console.log("contarea:"+cv.contourArea(cnt_tmp));
 			currentArea=cv.contourArea(cnt_tmp);
-		    poly.push_back(cnt_tmp);
+		    	poly.push_back(cnt_tmp);
 			pagecontour=cnt_tmp;
 		 }
 		//cv.drawContours(tmp, contours, i, new cv.Scalar(255,255,255), 1, cv.LINE_8, new cv.Mat(), 0);
@@ -174,7 +179,7 @@ cameraTrigger.onclick = function() {
 	//var targetPlane=[[0, 0],[0, spheight],[spwidth, spheight],[spwidth, 0]];
 	*/
 	//get the longest x and y axis of our contour (euclidian):
-	let rect = cv.boundingRect(cnt_tmp);
+	let rect = cv.boundingRect(poly.get(0));
 	let dsize = new cv.Size(src.rows, src.cols);
 	tmp=cv.Mat.zeros(src.rows, src.cols, cv.CV_8UC4);
 	//create the optimal rectangular plane
