@@ -117,6 +117,7 @@ let edges = new cv.Mat(cameraView.videoHeight, cameraView.videoWidth, cv.CV_8UC3
 			poly.push_back(cnt_tmp);
 			color=new cv.Scalar(0,255,0);
 			good_frame=src.clone();
+			orderPoints(pagecontour);
 			makeTheCut();
 		}
 		  /*
@@ -163,8 +164,8 @@ function makeTheCut() {
 	document.querySelector("#ui--capdiv").style.display="block";
 	
 		
-	let rect = cv.boundingRect(pagecontour);
-		console.log(rect.height +' '+ rect.width);
+	//let rect = cv.boundingRect(pagecontour);
+	//console.log(rect.height +' '+ rect.width);
 	let dsize = new cv.Size(good_frame.rows, good_frame.cols);
 	tmp=cv.Mat.zeros(good_frame.rows, good_frame.cols, cv.CV_8UC4);
 	
@@ -184,6 +185,17 @@ dismissTrigger.onclick = function() {
 	document.querySelector("#ui--capdiv").style.display="none";
 }
 
+function orderPoints(points) {
+	ret_rect=[[0,0],[0,0],[0,0],[0,0]];
+	points.sort(function compareNumbers(a, b) {return (a[0]+a[1]) - (b[0]+b[1]);});
+	ret_rect[0]=points[0];
+	ret_rect[2]=points[2];
+	points.sort(function compareNumbers(a, b) {return (a[0]-a[1]) - (b[0]-b[1]);});
+	ret_rect[1]=points[1];
+	ret_rect[3]=points[3];
+	console.log(ret_rect);
+	return ret_rect;
+}
 
 
 // Take a picture when cameraTrigger is tapped
