@@ -106,7 +106,9 @@ function checkFrame() {
 		cv.approxPolyDP(cnt, cnt_tmp, 0.03 * perimeter, true);
 		if (cnt !=null && cnt !== undefined) {
 			console.log("Contour "+i+": Elements: "+cnt.rows);
-			console.log("Contour 0:" + cnt.get(0));
+			//new cv.Mat(points[i][0], points[i][1]
+				   cnt.intPtr(0,0)
+			console.log("Contour 0:" + cnt.intPtr(0,0));
 		}
 		if (cv.isContourConvex(cnt_tmp) && (cnt_tmp.rows==4) && (maxAreaFound < cv.contourArea(cnt_tmp)) 
 		   && (cv.contourArea(cnt_tmp)< MAX_CONTOUR_AREA) 
