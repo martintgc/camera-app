@@ -121,7 +121,7 @@ function checkFrame() {
 				//console.log("Contour "+i+": Elements: "+cnt_tmp.rows);
 				for (let k = 0; k < cnt_tmp.rows; k++) {
 					
-    					ctx.arc(cnt_tmp.intPtr(k,0)[0], cnt_tmp.intPtr(k,0)[1], 0, (Math.PI / 180) * 360, 1);
+    					ctx.arc(cnt_tmp.intPtr(k,0)[0], cnt_tmp.intPtr(k,0)[1],10, 0, (Math.PI / 180) * 360, 1);
 					//console.log("Contour:point "+k+" x,y" + cnt.intPtr(k,0)+" - "+cnt.intPtr(k,0)[0]);
 					
 				}
@@ -137,7 +137,7 @@ function checkFrame() {
 			console.log(pagecontour);
 			poly.push_back(cnt_tmp);
 			color=new cv.Scalar(0,255,0);
-			good_frame=src.clone();
+			good_frame=src.clone();/*
 			ctx=edge.getContext("2d");
 			for (let j = 0; j < pagecontour.size(); ++j) {
     				ctx.beginPath();
@@ -146,6 +146,7 @@ function checkFrame() {
     				
 			}
 			ctx.stroke();
+			*/
 			//orderPoints(pagecontour);
 			//makeTheCut();
 		}
