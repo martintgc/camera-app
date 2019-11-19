@@ -132,7 +132,7 @@ function checkFrame() {
 			
 			 for (let j = 0; j < pagecontour.size(); ++j) {
 				//cv.drawContours(edges, poly, j, color, 2, cv.LINE_8, new cv.Mat(), 0);
-				  cv.circle(draw,pagecontour[j],1,color);
+				  cv.circle(edges,pagecontour[j],1,color);
 			
 
   
@@ -164,7 +164,7 @@ function checkFrame() {
 		
 	}
 
-    //cv.imshow("ui--edge", edges);
+    cv.imshow("ui--edge", edges);
 	
     dst.delete();
     edges.delete();
