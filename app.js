@@ -132,10 +132,10 @@ function checkFrame() {
 			ctx=edge.getContext("2d");
     			ctx.beginPath();
 			ctx.strokeStyle = "green";
-    			ctx.arc(50, 50, 50, 0, (Math.PI / 180) * 360, 1);
+    			ctx.arc(pagecontour.intPtr(0).x, pagecontour.intPtr(0).y, 50, 0, (Math.PI / 180) * 360, 1);
     			ctx.stroke();
 			
-			alert(pagecontour.rows);
+			
 			//orderPoints(pagecontour);
 			//makeTheCut();
 		}
