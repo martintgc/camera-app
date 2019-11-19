@@ -246,6 +246,7 @@ function makeTheCut() {
 dismissTrigger.onclick = function() {
 	document.querySelector("#ui--capdiv").style.display="none";
 	trackit=true;
+	greenlight=false;
 	setTimeout(checkFrame, 100);
 };
 
