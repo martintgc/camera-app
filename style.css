@@ -71,8 +71,8 @@ html, body{
 
 #ui--capdiv {
   position: fixed;
-   //height: 100%;
-    width: 20%;
+   height: 100%;
+    width: 100%;
   object-fit: contain;
   display: none;
   z-index: 11;
