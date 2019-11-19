@@ -9,7 +9,7 @@ html, body{
     position: fixed;
     height: 100%;
     width: 100%;
-    object-fit: cover;
+    object-fit: contain;
 }
 
 #camera--view, #camera--sensor, #camera--output{
@@ -64,7 +64,7 @@ html, body{
   position: fixed;
    //height: 100%;
     width: 20%;
-  object-fit: cover;
+  object-fit: contain;
   display: none;
   z-index: 11;
 }
@@ -74,7 +74,7 @@ html, body{
   position: fixed;
    height: 100%;
     width: 100%;
-  object-fit: cover;
+  object-fit: contain;
   z-index: 4;
 }
 
@@ -93,9 +93,9 @@ html, body{
 }
 
 #ui--feed {
-  object-fit: cover;
+  object-fit: contain;
   position: fixed;
-  object-fit: cover;
+  
   z-index: 5;
 }
 
