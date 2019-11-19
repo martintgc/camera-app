@@ -229,7 +229,7 @@ function makeTheCut() {
 	
 	var targetPlane=[0,0,maxWidth,0,maxWidth, maxHeight, 0,maxHeight];
 	
-	let srcTri = cv.matFromArray(4, 1, cv.CV_32FC2, sourceplane);
+	let srcTri = cv.matFromArray(4, 1, cv.CV_32FC2, sourceplane.flat());
 	let dstTri = cv.matFromArray(4, 1, cv.CV_32FC2, targetPlane);
 	let M = cv.getPerspectiveTransform(srcTri, dstTri);
 	cv.warpPerspective(good_frame, tmp, M, dsize, cv.INTER_LINEAR, cv.BORDER_CONSTANT, new cv.Scalar());
