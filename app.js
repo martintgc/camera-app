@@ -8,6 +8,7 @@ var good_frame=null;
 var cnt_tmp=null;
 var poly=null;
 var trackit=true;
+var greenlight=false;
 
 // Define constants
 const cameraView = document.querySelector("#camera--view"),
@@ -44,7 +45,7 @@ function initGlobals() {
 	pagecontour=new cv.Mat();
 	console.log("Globals initialized");
 	
-	document.querySelector("#ui--capdiv").style.display="block";
+	
 }
 
 
@@ -130,6 +131,7 @@ function checkFrame() {
 					ctx.stroke();
 				}
 			}
+			greenlight=false;
 			
   
 		}
@@ -157,6 +159,7 @@ function checkFrame() {
 					ctx.stroke();
 				}
 			}
+			greenlight=true;
 			
 		}
 		
@@ -260,6 +263,7 @@ function orderPoints(points) {
 
 // Take a picture when cameraTrigger is tapped
 cameraTrigger.onclick = function() {
+	if (!greenlight) return;
 if (tmp !=null && tmp !== undefined) {
 	trackit=false;
 	//setTimeout(checkFrame, 100);  
