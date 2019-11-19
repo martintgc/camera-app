@@ -264,11 +264,11 @@ function orderPoints(points) {
 // Take a picture when cameraTrigger is tapped
 cameraTrigger.onclick = function() {
 	if (!greenlight) return;
-if (tmp !=null && tmp !== undefined) {
+//if (tmp !=null && tmp !== undefined) {
 	trackit=false;
 	//setTimeout(checkFrame, 100);  
 	makeTheCut();
-}
+//}
 };
 
 // Start the video stream when the window loads
