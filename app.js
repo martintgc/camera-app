@@ -105,6 +105,7 @@ function checkFrame() {
 		perimeter=cv.arcLength(cnt, true);
 		cv.approxPolyDP(cnt, cnt_tmp, 0.03 * perimeter, true);
 		console.log(cnt_tmp.rows);
+		console.log(cnt_tmp[0]);
 		if (cv.isContourConvex(cnt_tmp) && (cnt_tmp.rows==4) && (maxAreaFound < cv.contourArea(cnt_tmp)) 
 		   && (cv.contourArea(cnt_tmp)< MAX_CONTOUR_AREA) 
 		   && (cv.contourArea(cnt_tmp)<requiredArea) ) {
