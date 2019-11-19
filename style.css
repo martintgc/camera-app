@@ -89,8 +89,8 @@ html, body{
 }
 
 #ui--capture {
-  width:20%;
-  //height:100%;
+  width:1000%;
+  height:100%;
   position: fixed;
  //opacity: 0.5;
     //width: 25%;
