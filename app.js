@@ -139,7 +139,9 @@ let edges = new cv.Mat(cameraView.videoHeight, cameraView.videoWidth, cv.CV_8UC3
 	}
 
     //cv.imshow("ui--edge", edges);
+    ctx.beginPath();
     edge.getContext("2d").arc(50, 50, 50, 0, (Math.PI / 180) * 360, 1);
+    ctx.stroke();
     edge.style.widht="100%";
     edge.style.height="100%";
     dst.delete();
