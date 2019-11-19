@@ -243,6 +243,7 @@ function makeTheCut() {
 dismissTrigger.onclick = function() {
 	document.querySelector("#ui--capdiv").style.display="none";
 	trackit=true;
+	setTimeout(checkFrame, 100);
 };
 
 function orderPoints(points) {
