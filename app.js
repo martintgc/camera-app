@@ -62,6 +62,8 @@ function checkFrame() {
     edge.width=cameraSensor.width;
     edge.height=cameraSensor.height;
 	edge.getContext("2d").clearRect(0,0,edge.width,edge.height);
+	  edge.style.widht="100%";
+    edge.style.height="100%";
    // edge.style.opacity=0.2;
     //let
     src = new cv.Mat(cameraView.videoHeight, cameraView.videoWidth, cv.CV_8UC4);
@@ -109,6 +111,13 @@ function checkFrame() {
 			// we found a shape and we seem close enough to push the contour and make it red
 			poly.push_back(cnt_tmp);
 			color=new cv.Scalar(255,0,0);
+			ctx=edge.getContext("2d");
+    			ctx.beginPath();
+    			ctx.arc(50, 50, 50, 0, (Math.PI / 180) * 360, 1);
+    			ctx.stroke();
+	
+
+  
 		}
 		
 		if (cv.isContourConvex(cnt_tmp) && (cnt_tmp.rows==4) && (maxAreaFound < cv.contourArea(cnt_tmp))
@@ -119,6 +128,10 @@ function checkFrame() {
 			poly.push_back(cnt_tmp);
 			color=new cv.Scalar(0,255,0);
 			good_frame=src.clone();
+			ctx=edge.getContext("2d");
+    			ctx.beginPath();
+    			ctx.arc(50, 50, 50, 0, (Math.PI / 180) * 360, 1);
+    			ctx.stroke();
 			//orderPoints(pagecontour);
 			//makeTheCut();
 		}
@@ -139,18 +152,8 @@ function checkFrame() {
 		
 	}
 
-    cv.imshow("ui--edge", edges);
-	/* ctx=edge.getContext("2d");
-    ctx.beginPath();
-    ctx.arc(50, 50, 50, 0, (Math.PI / 180) * 360, 1);
-    ctx.stroke();
+    //cv.imshow("ui--edge", edges);
 	
-	
-ctx.font = "10px Arial";
-ctx.fillText("-->"+pagecontour.cols, 50, 50);
-*/
-    edge.style.widht="100%";
-    edge.style.height="100%";
     dst.delete();
     edges.delete();
 
