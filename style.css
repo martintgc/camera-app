@@ -3,6 +3,7 @@ html, body{
   padding: 0;
   height: 100%;
   width: 100%;
+  background-color: black;
 }
 
 #camera, #camera--view, #camera--sensor, #camera--output{
@@ -15,6 +16,13 @@ html, body{
 #camera--view, #camera--sensor, #camera--output{
     //transform: scaleX(-1);
     //filter: FlipH;
+}
+
+#ui--angle {
+  color: white;
+  position: fixed;
+  top:10px;
+  right: 200px;
 }
 
 
