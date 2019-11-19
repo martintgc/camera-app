@@ -58,18 +58,17 @@ function checkFrame() {
 	let requiredArea= MAX_CONTOUR_AREA * 0.45;
 	let currentArea=0;
 
-	
-    edge.width=cameraSensor.width;
-    edge.height=cameraSensor.height;
-	edge.getContext("2d").clearRect(0,0,edge.width,edge.height);
-	  edge.style.widht="100%";
-    edge.style.height="100%";
+	edge.width=cameraSensor.width;
+    	edge.height=cameraSensor.height;
+    	edge.getContext("2d").clearRect(0,0,edge.width,edge.height);
+	edge.style.widht="100%";
+    	edge.style.height="100%";
    // edge.style.opacity=0.2;
-    //let
+   
     src = new cv.Mat(cameraView.videoHeight, cameraView.videoWidth, cv.CV_8UC4);
     let dst = new cv.Mat(cameraView.videoHeight, cameraView.videoWidth, cv.CV_8UC1);
     //let tmp = new cv.Mat(cameraView.videoHeight, cameraView.videoWidth, cv.CV_8UC1);
-	let edges = new cv.Mat(cameraView.videoHeight, cameraView.videoWidth, cv.CV_8UC3);
+    //let edges = new cv.Mat(cameraView.videoHeight, cameraView.videoWidth, cv.CV_8UC3);
     cameraSensor.width = cameraView.videoWidth;
     cameraSensor.height = cameraView.videoHeight;
     cameraSensor.getContext("2d").drawImage(cameraView, 0, 0);
@@ -88,7 +87,7 @@ function checkFrame() {
     cv.copyMakeBorder(dst, dst, 5, 5, 5, 5, cv.BORDER_CONSTANT, value=[0, 0, 0, 0]);	
     cv.Canny(dst,dst, 200, 250, 3, false);
 	
-	edges=cv.Mat.zeros(cameraView.videoHeight, cameraView.videoWidth, cv.CV_8UC3);
+	//edges=cv.Mat.zeros(cameraView.videoHeight, cameraView.videoWidth, cv.CV_8UC3);
 	
 	let contours = new cv.MatVector();
 	let hierarchy = new cv.Mat();
@@ -168,9 +167,9 @@ function checkFrame() {
     */
 	
     dst.delete();
-    edges.delete();
+    //edges.delete();
 
-    setTimeout(checkFrame, 500);  
+    setTimeout(checkFrame, 100);  
 }
 
 function makeTheCut() {
