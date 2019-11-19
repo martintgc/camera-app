@@ -157,7 +157,7 @@ function checkFrame() {
 					ctx.stroke();
 				}
 			}
-			makeTheCut();
+			
 		}
 		
 		
@@ -262,8 +262,8 @@ function orderPoints(points) {
 cameraTrigger.onclick = function() {
 if (tmp !=null && tmp !== undefined) {
 	trackit=false;
-	setTimeout(checkFrame, 100);  
-	
+	//setTimeout(checkFrame, 100);  
+	makeTheCut();
 }
 };
 
