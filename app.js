@@ -181,8 +181,8 @@ function makeTheCut() {
 				for (let k = 0; k < pagecontour.rows; k++) {
 					ret_rect[k]=[pagecontour.intPtr(k,0)[0]-5, pagecontour.intPtr(k,0)[1]-5];
 				}
-		
-		alert(ret_rect);
+		let zweirect=orderPoints(ret_rect);
+		alert(ret_rect+"\n"+zweirect);
 	}
 		
 	//let rect = cv.boundingRect(pagecontour);
@@ -214,7 +214,7 @@ function orderPoints(points) {
 	points.sort(function compareNumbers(a, b) {return (a[0]-a[1]) - (b[0]-b[1]);});
 	ret_rect[1]=points[1];
 	ret_rect[3]=points[3];
-	console.log(ret_rect);
+	c//onsole.log(ret_rect);
 	return ret_rect;
 }
 
