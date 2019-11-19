@@ -104,12 +104,22 @@ function checkFrame() {
 		
 		perimeter=cv.arcLength(cnt, true);
 		cv.approxPolyDP(cnt, cnt_tmp, 0.03 * perimeter, true);
-		if (cnt !=null && cnt !== undefined) {
-			console.log("Contour "+i+": Elements: "+cnt.rows);
-			//new cv.Mat(points[i][0], points[i][1]
-				   cnt.intPtr(0,0)
-			console.log("Contour 0:" + cnt.intPtr(0,0));
-		}
+		ctx=edge.getContext("2d");
+    			ctx.beginPath();
+			
+    			
+	
+			if (cnt_tmp !=null && cnt_tmp !== undefined) {
+				console.log("Contour "+i+": Elements: "+cnt_tmp.rows);
+				for (let k = 0; k < cnt_tmp.rows; k++) {
+					ctx.strokeStyle = "red";
+    					ctx.arc(cnt.intPtr(0,1).row, cnt.intPtr(0,1).col, 0, (Math.PI / 180) * 360, 1);
+					//console.log("Contour:point" + cnt.intPtr(0,0));
+				}
+			}
+			ctx.stroke();
+		
+		
 		if (cv.isContourConvex(cnt_tmp) && (cnt_tmp.rows==4) && (maxAreaFound < cv.contourArea(cnt_tmp)) 
 		   && (cv.contourArea(cnt_tmp)< MAX_CONTOUR_AREA) 
 		   && (cv.contourArea(cnt_tmp)<requiredArea) ) {
@@ -118,11 +128,18 @@ function checkFrame() {
 			color=new cv.Scalar(255,0,0);
 			ctx=edge.getContext("2d");
     			ctx.beginPath();
-			ctx.strokeStyle = "red";
-    			ctx.arc(50, 50, 50, 0, (Math.PI / 180) * 360, 1);
-    			ctx.stroke();
+			
+    			
 	
-
+			if (cnt_tmp !=null && cnt_tmp !== undefined) {
+				console.log("Contour "+i+": Elements: "+cnt_tmp.rows);
+				for (let k = 0; k < cnt_tmp.rows; k++) {
+					ctx.strokeStyle = "red";
+    					ctx.arc(cnt.intPtr(0,1).row, cnt.intPtr(0,1).col, 0, (Math.PI / 180) * 360, 1);
+					//console.log("Contour:point" + cnt.intPtr(0,0));
+				}
+			}
+			ctx.stroke();
   
 		}
 		
