@@ -113,6 +113,7 @@ function checkFrame() {
 			color=new cv.Scalar(255,0,0);
 			ctx=edge.getContext("2d");
     			ctx.beginPath();
+			ctx.strokeStyle = "red";
     			ctx.arc(50, 50, 50, 0, (Math.PI / 180) * 360, 1);
     			ctx.stroke();
 	
@@ -130,6 +131,7 @@ function checkFrame() {
 			good_frame=src.clone();
 			ctx=edge.getContext("2d");
     			ctx.beginPath();
+			ctx.strokeStyle = "green";
     			ctx.arc(50, 50, 50, 0, (Math.PI / 180) * 360, 1);
     			ctx.stroke();
 			//orderPoints(pagecontour);
