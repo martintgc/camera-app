@@ -135,7 +135,7 @@ function checkFrame() {
     			ctx.arc(50, 50, 50, 0, (Math.PI / 180) * 360, 1);
     			ctx.stroke();
 			
-			alert(pagecontour.toString());
+			alert(pagecontour.rows);
 			//orderPoints(pagecontour);
 			//makeTheCut();
 		}
