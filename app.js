@@ -227,7 +227,7 @@ function makeTheCut() {
 	let dsize = new cv.Size(maxWidth, maxHeight);
 	tmp=cv.Mat.zeros(maxWidth, maxHeight, cv.CV_8UC4);
 	
-	var targetPlane=[0,0,maxWidth,0,maxWidth, maxHeight, 0,maxWidth];
+	var targetPlane=[0,0,maxWidth,0,maxWidth, maxHeight, 0,maxHeight];
 	
 	let srcTri = cv.matFromArray(4, 1, cv.CV_32FC2, sourcePlane);
 	let dstTri = cv.matFromArray(4, 1, cv.CV_32FC2, targetPlane);
