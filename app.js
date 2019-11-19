@@ -134,31 +134,17 @@ let edges = new cv.Mat(cameraView.videoHeight, cameraView.videoWidth, cv.CV_8UC3
 		for (let j = 0; j < poly.size(); ++j) {
 			cv.drawContours(edges, poly, j, color, 2, cv.LINE_8, new cv.Mat(), 0);
 		}
-		edge.getContext('2d').arc(50, 50, 50, 0, 360, 1);
+		
 	}
-/*
-	
-	if (currentArea>maxAreaFound) {
-			
-	}
-	
-	if (currentArea>requiredArea) {
-			
-	}
-	*/
-	
 
     cv.imshow("ui--edge", edges);
+    edge.getContext('2d').arc(50, 50, 50, 0, 360, 1);
     edge.style.widht="100%";
     edge.style.height="100%";
-	dst.delete();
-	edges.delete();
-	
-	
-    setTimeout(checkFrame, 500);  
-	
-	
+    dst.delete();
+   edges.delete();
 
+    setTimeout(checkFrame, 500);  
 }
 
 function makeTheCut() {
