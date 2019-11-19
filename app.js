@@ -61,7 +61,8 @@ function checkFrame() {
 	
     edge.width=cameraSensor.width;
     edge.height=cameraSensor.height;
-    edge.style.opacity=0.2;
+	edge.getContext("2d").clearRect(0,0,edge.width,edge.height);
+   // edge.style.opacity=0.2;
     //let
     src = new cv.Mat(cameraView.videoHeight, cameraView.videoWidth, cv.CV_8UC4);
     let dst = new cv.Mat(cameraView.videoHeight, cameraView.videoWidth, cv.CV_8UC1);
@@ -137,7 +138,7 @@ let edges = new cv.Mat(cameraView.videoHeight, cameraView.videoWidth, cv.CV_8UC3
 		
 	}
 
-    cv.imshow("ui--edge", edges);
+    //cv.imshow("ui--edge", edges);
     edge.getContext("2d").arc(50, 50, 50, 0, (Math.PI / 180) * 360, 1);
     edge.style.widht="100%";
     edge.style.height="100%";
