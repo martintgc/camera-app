@@ -188,12 +188,12 @@ function makeTheCut() {
 		sourceplane=orderPoints(ret_rect);
 		
 	}
-	widthA=sourceplane[2][0]-sourceplane[3][0];
-	widthB=sourceplane[1][0]-sourceplane[0][0];
+	widthA=Math.sqrt(((sourceplane[2][0]-sourceplane[3][0])**2)+((sourceplane[2][1]-sourceplane[3][1])**2));
+	widthB=Math.sqrt(((sourceplane[1][0]-sourceplane[0][0])**2)+((sourceplane[1][1]-sourceplane[0][1])**2));
 	maxWidth = Math.max(widthA, widthB);
 	
-	heightA=sourceplane[2][1]-sourceplane[1][1];
-	heightB=sourceplane[3][1]-sourceplane[0][1];
+	heightA=Math.sqrt(((sourceplane[1][0]-sourceplane[2][0])**2)+((sourceplane[1][1]-sourceplane[2][1])**2));
+	heightB=Math.sqrt(((sourceplane[0][0]-sourceplane[3][0])**2)+((sourceplane[0][1]-sourceplane[3][1])**2));
 	maxHeight = Math.max(heightA, heightB);
 	/*
 	
