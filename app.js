@@ -115,11 +115,12 @@ let edges = new cv.Mat(cameraView.videoHeight, cameraView.videoWidth, cv.CV_8UC3
 		   && (cv.contourArea(cnt_tmp)< MAX_CONTOUR_AREA)
 		   && (cv.contourArea(cnt_tmp)>requiredArea) ) {
 			pagecontour=cnt_tmp.clone();
+			console.log(pagecontour);
 			poly.push_back(cnt_tmp);
 			color=new cv.Scalar(0,255,0);
 			good_frame=src.clone();
-			orderPoints(pagecontour);
-			makeTheCut();
+			//orderPoints(pagecontour);
+			//makeTheCut();
 		}
 		  /*
 		   ) {
