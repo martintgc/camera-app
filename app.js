@@ -67,7 +67,7 @@ function checkFrame() {
     src = new cv.Mat(cameraView.videoHeight, cameraView.videoWidth, cv.CV_8UC4);
     let dst = new cv.Mat(cameraView.videoHeight, cameraView.videoWidth, cv.CV_8UC1);
     //let tmp = new cv.Mat(cameraView.videoHeight, cameraView.videoWidth, cv.CV_8UC1);
-let edges = new cv.Mat(cameraView.videoHeight, cameraView.videoWidth, cv.CV_8UC3);
+	let edges = new cv.Mat(cameraView.videoHeight, cameraView.videoWidth, cv.CV_8UC3);
     cameraSensor.width = cameraView.videoWidth;
     cameraSensor.height = cameraView.videoHeight;
     cameraSensor.getContext("2d").drawImage(cameraView, 0, 0);
@@ -139,19 +139,20 @@ let edges = new cv.Mat(cameraView.videoHeight, cameraView.videoWidth, cv.CV_8UC3
 		
 	}
 
-    //cv.imshow("ui--edge", edges);
-	ctx=edge.getContext("2d");
-   /* ctx.beginPath();
+    cv.imshow("ui--edge", edges);
+	/* ctx=edge.getContext("2d");
+    ctx.beginPath();
     ctx.arc(50, 50, 50, 0, (Math.PI / 180) * 360, 1);
     ctx.stroke();
-	*/
+	
 	
 ctx.font = "10px Arial";
 ctx.fillText("-->"+pagecontour.cols, 50, 50);
+*/
     edge.style.widht="100%";
     edge.style.height="100%";
     dst.delete();
-   edges.delete();
+    edges.delete();
 
     setTimeout(checkFrame, 500);  
 }
