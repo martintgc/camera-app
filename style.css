@@ -84,6 +84,7 @@ html, body{
     width: 100%;
   object-fit: contain;
   z-index: 4;
+  background-color: black;
 }
 
 #ui--capture {
