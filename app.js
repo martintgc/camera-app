@@ -7,6 +7,7 @@ var tmp=null;
 var good_frame=null;
 var cnt_tmp=null;
 var poly=null;
+var trackit=true;
 
 // Define constants
 const cameraView = document.querySelector("#camera--view"),
@@ -48,7 +49,7 @@ function initGlobals() {
 
 
 function checkFrame() {
-
+	if (!trackit) return;
     // your function code here
     if (blink.style.display === "none") {
         blink.style.display = "block";
@@ -241,7 +242,7 @@ function makeTheCut() {
 
 dismissTrigger.onclick = function() {
 	document.querySelector("#ui--capdiv").style.display="none";
-}
+};
 
 function orderPoints(points) {
 	ret_rect=[[0,0],[0,0],[0,0],[0,0]];
@@ -251,63 +252,16 @@ function orderPoints(points) {
 	points.sort(function compareNumbers(a, b) {return (a[0]-a[1]) - (b[0]-b[1]);});
 	ret_rect[2]=points[1];
 	ret_rect[3]=points[0];
-	//console.log(ret_rect);
 	return ret_rect;
 }
 
 
 // Take a picture when cameraTrigger is tapped
 cameraTrigger.onclick = function() {
-/*
-	if (pagecontour !== null && pagecontour !== undefined && pagecontour.size()>0 &&
-	   good_frame !== null && good_frame !== undefined
-	   
-	   ) {
-	*/	
-		
-	document.querySelector("#ui--capdiv").style.display="block";
+if (tmp !=null && tmp !== undefined) {
+	trackit=false;
 	
-		
-	let rect = cv.boundingRect(pagecontour);
-		console.log(rect.height +' '+ rect.width);
-	let dsize = new cv.Size(good_frame.rows, good_frame.cols);
-	tmp=cv.Mat.zeros(good_frame.rows, good_frame.cols, cv.CV_8UC4);
-	
-	var targetPlane=[0,0,0,rect.height,rect.width,rect.height,rect.width,0];
-	
-	let srcTri = cv.matFromArray(4, 1, cv.CV_32FC2, targetPlane);
-	let dstTri = cv.matFromArray(4, 1, cv.CV_32FC2, targetPlane);
-	let M = cv.getPerspectiveTransform(srcTri, dstTri);
-	cv.warpPerspective(good_frame, tmp, M, dsize, cv.INTER_LINEAR, cv.BORDER_CONSTANT, new cv.Scalar());
-
-	cv.imshow("ui--capture", tmp);
-	tmp.delete();
-	
-	
-	/*
-    edge.width=cameraSensor.width;
-    edge.height=cameraSensor.height;
-    edge.style.opacity=0.2;
-    let src = new cv.Mat(cameraView.videoHeight, cameraView.videoWidth, cv.CV_8UC4);
-    let dst = new cv.Mat(cameraView.videoHeight, cameraView.videoWidth, cv.CV_8UC1);
-    cameraSensor.width = cameraView.videoWidth;
-    cameraSensor.height = cameraView.videoHeight;
-    cameraSensor.getContext("2d").drawImage(cameraView, 0, 0)
-    src.data.set(cameraSensor.getContext("2d").getImageData(0, 0, cameraSensor.width, cameraSensor.height).data);
-    cv.cvtColor(src, dst, cv.COLOR_RGBA2GRAY);
-    cv.imshow("ui--edge", dst);
-    edge.style.widht="100%";
-    edge.style.height="100%";
-	*/
-    /*
-    cameraSensor.width = cameraView.videoWidth;
-    cameraSensor.height = cameraView.videoHeight;
-    cameraSensor.getContext("2d").drawImage(cameraView, 0, 0);
-    cameraOutput.src = cameraSensor.toDataURL("image/webp");
-    
-    cameraOutput.classList.add("taken");
-    */
-    // track.stop();
+}
 };
 
 // Start the video stream when the window loads
