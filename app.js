@@ -112,9 +112,9 @@ function checkFrame() {
 			if (cnt_tmp !=null && cnt_tmp !== undefined) {
 				console.log("Contour "+i+": Elements: "+cnt_tmp.rows);
 				for (let k = 0; k < cnt_tmp.rows; k++) {
-					ctx.strokeStyle = "red";
-    					ctx.arc(cnt.intPtr(0,1).row, cnt.intPtr(0,1).col, 0, (Math.PI / 180) * 360, 1);
-					//console.log("Contour:point" + cnt.intPtr(0,0));
+					//ctx.strokeStyle = "red";
+    					//ctx.arc(cnt.intPtr(0,1).row, cnt.intPtr(0,1).col, 0, (Math.PI / 180) * 360, 1);
+					console.log("Contour:point x,y" + cnt.intPtr(k,0));
 				}
 			}
 			ctx.stroke();
