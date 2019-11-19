@@ -124,7 +124,8 @@ function checkFrame() {
 				for (let k = 0; k < cnt_tmp.rows; k++) {
 					ctx.beginPath();
     					ctx.arc(cnt_tmp.intPtr(k,0)[0]-5, cnt_tmp.intPtr(k,0)[1]-5,5, 0, (Math.PI / 180) * 360, 1);
-					ctx.fill();	
+					ctx.fill();
+					ctx.stroke();
 				}
 			}
 			
@@ -151,6 +152,7 @@ function checkFrame() {
 					ctx.beginPath();
     					ctx.arc(cnt_tmp.intPtr(k,0)[0]-5, cnt_tmp.intPtr(k,0)[1]-5,5, 0, (Math.PI / 180) * 360, 1);
 					ctx.fill();	
+					ctx.stroke();
 				}
 			}
 		}
