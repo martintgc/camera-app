@@ -213,8 +213,8 @@ function orderPoints(points) {
 	ret_rect[0]=points[0];
 	ret_rect[1]=points[1];
 	points.sort(function compareNumbers(a, b) {return (a[0]-a[1]) - (b[0]-b[1]);});
-	ret_rect[2]=points[2];
-	ret_rect[3]=points[3];
+	ret_rect[2]=points[1];
+	ret_rect[3]=points[0];
 	//console.log(ret_rect);
 	return ret_rect;
 }
