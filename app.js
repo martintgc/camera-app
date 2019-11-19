@@ -114,19 +114,19 @@ function checkFrame() {
 			poly.push_back(cnt_tmp);
 			color=new cv.Scalar(255,0,0);
 			ctx=edge.getContext("2d");
-    			ctx.beginPath();
+    			
 			ctx.strokeStyle = "red";
 	
 			if (cnt_tmp !=null && cnt_tmp !== undefined) {
 				//console.log("Contour "+i+": Elements: "+cnt_tmp.rows);
 				for (let k = 0; k < cnt_tmp.rows; k++) {
-					
-    					ctx.arc(cnt_tmp.intPtr(k,0)[0], cnt_tmp.intPtr(k,0)[1],10, 0, (Math.PI / 180) * 360, 1);
+					ctx.beginPath();
+    					ctx.arc(cnt_tmp.intPtr(k,0)[0]-5, cnt_tmp.intPtr(k,0)[1]-5,5, 0, (Math.PI / 180) * 360, 1);
 					//console.log("Contour:point "+k+" x,y" + cnt.intPtr(k,0)+" - "+cnt.intPtr(k,0)[0]);
-					
+					ctx.fill();	
 				}
 			}
-			ctx.stroke();
+			
   
 		}
 		
