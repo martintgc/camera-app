@@ -16,7 +16,7 @@ html, body{
 #camera--view, #camera--sensor, #camera--output{
     //transform: scaleX(-1);
     //filter: FlipH;
-  background-color: black;
+  
 }
 
 #ui--angle {
