@@ -129,12 +129,20 @@ function checkFrame() {
 			poly.push_back(cnt_tmp);
 			color=new cv.Scalar(0,255,0);
 			good_frame=src.clone();
+			
+			 for (let j = 0; j < pagecontour.size(); ++j) {
+				//cv.drawContours(edges, poly, j, color, 2, cv.LINE_8, new cv.Mat(), 0);
+				  cv.circle(draw,pagecontour[j],1,color);
+			
+
+  
+			
 			ctx=edge.getContext("2d");
     			ctx.beginPath();
 			ctx.strokeStyle = "green";
-    			ctx.arc(pagecontour[0][0], pagecontour[1][0], 50, 0, (Math.PI / 180) * 360, 1);
+    			ctx.arc(pagecontour[j].x, pagecontour[j].y, 50, 0, (Math.PI / 180) * 360, 1);
     			ctx.stroke();
-			
+			}
 			
 			//orderPoints(pagecontour);
 			//makeTheCut();
