@@ -16,6 +16,7 @@ html, body{
 #camera--view, #camera--sensor, #camera--output{
     //transform: scaleX(-1);
     //filter: FlipH;
+  background-color: black;
 }
 
 #ui--angle {
@@ -84,7 +85,7 @@ html, body{
     width: 100%;
   object-fit: contain;
   z-index: 4;
-  background-color: black;
+  
 }
 
 #ui--capture {
