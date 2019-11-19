@@ -114,8 +114,9 @@ function checkFrame() {
 			poly.push_back(cnt_tmp);
 			color=new cv.Scalar(255,0,0);
 			ctx=edge.getContext("2d");
-    			ctx.strokeStyle = "red";
-			ctx.fillStyle="red";
+    			ctx.lineWidth = 2;
+    			ctx.strokeStyle = "black";
+			ctx.fillStyle="white";
 			
 	
 			if (cnt_tmp !=null && cnt_tmp !== undefined) {
@@ -137,6 +138,21 @@ function checkFrame() {
 			poly.push_back(cnt_tmp);
 			color=new cv.Scalar(0,255,0);
 			good_frame=src.clone();
+			ctx=edge.getContext("2d");
+			
+			ctx.lineWidth = 2;
+    			ctx.strokeStyle = "black";
+			ctx.fillStyle="green";
+			
+	
+			if (cnt_tmp !=null && cnt_tmp !== undefined) {
+				//console.log("Contour "+i+": Elements: "+cnt_tmp.rows);
+				for (let k = 0; k < cnt_tmp.rows; k++) {
+					ctx.beginPath();
+    					ctx.arc(cnt_tmp.intPtr(k,0)[0]-5, cnt_tmp.intPtr(k,0)[1]-5,5, 0, (Math.PI / 180) * 360, 1);
+					ctx.fill();	
+				}
+			}
 		}
 		
 		
