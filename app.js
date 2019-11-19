@@ -147,7 +147,7 @@ let edges = new cv.Mat(cameraView.videoHeight, cameraView.videoWidth, cv.CV_8UC3
 	*/
 	
 ctx.font = "10px Arial";
-ctx.fillText("-->"+pagecontour, 10, 50);
+ctx.fillText("-->"+pagecontour.cols, 50, 50);
     edge.style.widht="100%";
     edge.style.height="100%";
     dst.delete();
