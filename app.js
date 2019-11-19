@@ -154,6 +154,7 @@ function checkFrame() {
 					ctx.stroke();
 				}
 			}
+			makeTheCut();
 		}
 		
 		
@@ -174,7 +175,15 @@ function checkFrame() {
 
 function makeTheCut() {
 	document.querySelector("#ui--capdiv").style.display="block";
-	
+	ret_rect=[[0,0],[0,0],[0,0],[0,0]];
+	if (pagecontour !=null && pagecontour !== undefined) {
+				//console.log("Contour "+i+": Elements: "+cnt_tmp.rows);
+				for (let k = 0; k < pagecontour.rows; k++) {
+					ret_rect[k]=[pagecontour.intPtr(k,0)[0]-5, pagecontour.intPtr(k,0)[1]-5];
+				}
+		
+		alert(ret_rect);
+	}
 		
 	//let rect = cv.boundingRect(pagecontour);
 	//console.log(rect.height +' '+ rect.width);
