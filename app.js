@@ -145,7 +145,7 @@ let edges = new cv.Mat(cameraView.videoHeight, cameraView.videoWidth, cv.CV_8UC3
     ctx.arc(50, 50, 50, 0, (Math.PI / 180) * 360, 1);
     ctx.stroke();
 	*/
-	var ctx = canvas.getContext("2d");
+	
 ctx.font = "10px Arial";
 ctx.fillText("-->"+pagecontour, 10, 50);
     edge.style.widht="100%";
