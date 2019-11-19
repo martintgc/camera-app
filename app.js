@@ -42,6 +42,8 @@ function initGlobals() {
 	good_frame=new cv.Mat(cameraView.videoHeight, cameraView.videoWidth, cv.CV_8UC4);
 	pagecontour=new cv.Mat();
 	console.log("Globals initialized");
+	
+	document.querySelector("#ui--capdiv").style.display="block";
 }
 
 
@@ -176,24 +178,58 @@ function checkFrame() {
 function makeTheCut() {
 	document.querySelector("#ui--capdiv").style.display="block";
 	ret_rect=[[0,0],[0,0],[0,0],[0,0]];
+	var sourceplane=null;
 	if (pagecontour !=null && pagecontour !== undefined) {
 				//console.log("Contour "+i+": Elements: "+cnt_tmp.rows);
 				for (let k = 0; k < pagecontour.rows; k++) {
 					ret_rect[k]=[pagecontour.intPtr(k,0)[0]-5, pagecontour.intPtr(k,0)[1]-5];
 				}
-		let oriarr=ret_rect.slice();
-		let zweirect=orderPoints(ret_rect);
-		alert(oriarr+"\n"+zweirect);
-	}
 		
+		sourceplane=orderPoints(ret_rect);
+		
+	}
+	widthA=sourceplane[2][0]-sourceplane[3][0];
+	widthB=sourceplane[1][0]-sourceplane[0][0];
+	maxWidth = Math.max(widthA, widthB);
+	
+	heightA=sourceplane[2][1]-sourceplane[1][1];
+	heightB=sourceplane[3][1]-sourceplane[0][1];
+	maxHeight = Math.max(heightA, heightB);
+	/*
+	
+	# compute the width of the new image, which will be the
+	# maximum distance between bottom-right and bottom-left
+	# x-coordiates or the top-right and top-left x-coordinates
+	widthA = np.sqrt(((br[0] - bl[0]) ** 2) + ((br[1] - bl[1]) ** 2))
+	widthB = np.sqrt(((tr[0] - tl[0]) ** 2) + ((tr[1] - tl[1]) ** 2))
+	maxWidth = max(int(widthA), int(widthB))
+ 
+	# compute the height of the new image, which will be the
+	# maximum distance between the top-right and bottom-right
+	# y-coordinates or the top-left and bottom-left y-coordinates
+	heightA = np.sqrt(((tr[0] - br[0]) ** 2) + ((tr[1] - br[1]) ** 2))
+	heightB = np.sqrt(((tl[0] - bl[0]) ** 2) + ((tl[1] - bl[1]) ** 2))
+	maxHeight = max(int(heightA), int(heightB))
+ 
+	# now that we have the dimensions of the new image, construct
+	# the set of destination points to obtain a "birds eye view",
+	# (i.e. top-down view) of the image, again specifying points
+	# in the top-left, top-right, bottom-right, and bottom-left
+	# order
+	dst = np.array([
+		[0, 0],
+		[maxWidth - 1, 0],
+		[maxWidth - 1, maxHeight - 1],
+		[0, maxHeight - 1]], dtype = "float32")
+	*/
 	//let rect = cv.boundingRect(pagecontour);
 	//console.log(rect.height +' '+ rect.width);
-	let dsize = new cv.Size(good_frame.rows, good_frame.cols);
-	tmp=cv.Mat.zeros(good_frame.rows, good_frame.cols, cv.CV_8UC4);
+	let dsize = new cv.Size(maxWidth, maxHeight);
+	tmp=cv.Mat.zeros(maxWidth, maxHeight, cv.CV_8UC4);
 	
-	var targetPlane=[0,0,0,rect.height,rect.width,rect.height,rect.width,0];
+	var targetPlane=[0,0,maxWidth,0,maxWidth, maxHeight, 0,maxWidth];
 	
-	let srcTri = cv.matFromArray(4, 1, cv.CV_32FC2, targetPlane);
+	let srcTri = cv.matFromArray(4, 1, cv.CV_32FC2, sourcePlane);
 	let dstTri = cv.matFromArray(4, 1, cv.CV_32FC2, targetPlane);
 	let M = cv.getPerspectiveTransform(srcTri, dstTri);
 	cv.warpPerspective(good_frame, tmp, M, dsize, cv.INTER_LINEAR, cv.BORDER_CONSTANT, new cv.Scalar());
