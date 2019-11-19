@@ -122,9 +122,7 @@ function checkFrame() {
 				//console.log("Contour "+i+": Elements: "+cnt_tmp.rows);
 				for (let k = 0; k < cnt_tmp.rows; k++) {
 					ctx.beginPath();
-					
     					ctx.arc(cnt_tmp.intPtr(k,0)[0]-5, cnt_tmp.intPtr(k,0)[1]-5,5, 0, (Math.PI / 180) * 360, 1);
-					//console.log("Contour:point "+k+" x,y" + cnt.intPtr(k,0)+" - "+cnt.intPtr(k,0)[0]);
 					ctx.fill();	
 				}
 			}
@@ -136,40 +134,20 @@ function checkFrame() {
 		   && (cv.contourArea(cnt_tmp)< MAX_CONTOUR_AREA)
 		   && (cv.contourArea(cnt_tmp)>requiredArea) ) {
 			pagecontour=cnt_tmp.clone();
-			console.log(pagecontour);
 			poly.push_back(cnt_tmp);
 			color=new cv.Scalar(0,255,0);
-			good_frame=src.clone();/*
-			ctx=edge.getContext("2d");
-			for (let j = 0; j < pagecontour.size(); ++j) {
-    				ctx.beginPath();
-				ctx.strokeStyle = "green";
-    				ctx.arc(pagecontour[j].x, pagecontour[j].y, 50, 0, (Math.PI / 180) * 360, 1);
-    				
-			}
-			ctx.stroke();
-			*/
-			//orderPoints(pagecontour);
-			//makeTheCut();
-		}
-		  /*
-		   ) {
 			good_frame=src.clone();
-			currentArea=cv.contourArea(cnt_tmp);
-		    	poly.push_back(cnt_tmp);
-			pagecontour=cnt_tmp.clone();
-			
-			makeTheCut();
-		 } else {
-			
-		 }*/
-		for (let j = 0; j < poly.size(); ++j) {
-			cv.drawContours(edges, poly, j, color, 2, cv.LINE_8, new cv.Mat(), 0);
 		}
 		
+		
 	}
-
-    //cv.imshow("ui--edge", edges);
+		/*
+	for (let j = 0; j < poly.size(); ++j) {
+		cv.drawContours(edges, poly, j, color, 2, cv.LINE_8, new cv.Mat(), 0);
+	}
+    cv.imshow("ui--edge", edges);
+    
+    */
 	
     dst.delete();
     edges.delete();
