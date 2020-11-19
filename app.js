@@ -1,5 +1,5 @@
 // Set constraints for the video stream
-var constraints = { video: { facingMode: { exact: "environment" }, width:2160, height:3840 }, audio: false };
+var constraints = { video: { facingMode: { exact: "environment" }, width:3840, height:2160 }, audio: false };
 var track = null;
 var pagecontour=null;
 var src=null;
