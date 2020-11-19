@@ -181,6 +181,7 @@ function checkFrame() {
 
 function makeTheCut() {
 	document.querySelector("#ui--capdiv").style.display="block";
+	document.querySelector("#ui--capdiv").text(cameraView.videoHeight +"-"+ cameraView.videoWidth)
 	ret_rect=[[0,0],[0,0],[0,0],[0,0]];
 	var sourceplane=null;
 	if (pagecontour !=null && pagecontour !== undefined) {
