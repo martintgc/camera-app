@@ -28,7 +28,7 @@ function cameraStart() {
         .then(function(stream) {
             track = stream.getTracks()[0];
             cameraView.srcObject = stream;
-            setTimeout(checkFrame, 500);
+            setTimeout(checkFrame, 2000);
             initGlobals();
         })
         .catch(function(error) {
@@ -248,7 +248,7 @@ dismissTrigger.onclick = function() {
 	document.querySelector("#ui--capdiv").style.display="none";
 	trackit=true;
 	greenlight=false;
-	setTimeout(checkFrame, 1000);
+	setTimeout(checkFrame, 500);
 };
 
 function orderPoints(points) {
