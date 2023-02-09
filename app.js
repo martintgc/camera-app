@@ -167,7 +167,7 @@ function checkFrame() {
 	}
 		
 	for (let j = 0; j < poly.size(); ++j) {
-		cv.drawContours(edges, poly, j, color, 2, cv.LINE_8, new cv.Mat(), 0);
+		cv.drawContours(edges, poly, j, color, 4, cv.LINE_8, new cv.Mat(), 0);
 	}
     cv.imshow("ui--edge", edges);
     
@@ -176,7 +176,7 @@ function checkFrame() {
     dst.delete();
     //edges.delete();
 
-    setTimeout(checkFrame, 100);  
+    setTimeout(checkFrame, 1000);  
 }
 
 function makeTheCut() {
@@ -248,7 +248,7 @@ dismissTrigger.onclick = function() {
 	document.querySelector("#ui--capdiv").style.display="none";
 	trackit=true;
 	greenlight=false;
-	setTimeout(checkFrame, 100);
+	setTimeout(checkFrame, 1000);
 };
 
 function orderPoints(points) {
