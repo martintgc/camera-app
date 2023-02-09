@@ -165,13 +165,13 @@ function checkFrame() {
 		
 		
 	}
-		/*
+		
 	for (let j = 0; j < poly.size(); ++j) {
 		cv.drawContours(edges, poly, j, color, 2, cv.LINE_8, new cv.Mat(), 0);
 	}
     cv.imshow("ui--edge", edges);
     
-    */
+    
 	
     dst.delete();
     //edges.delete();
