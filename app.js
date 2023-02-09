@@ -28,7 +28,7 @@ function cameraStart() {
         .then(function(stream) {
             track = stream.getTracks()[0];
             cameraView.srcObject = stream;
-            setTimeout(checkFrame, 2000);
+            setTimeout(checkFrame, 500);
             initGlobals();
         })
         .catch(function(error) {
